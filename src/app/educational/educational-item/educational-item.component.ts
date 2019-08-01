@@ -14,6 +14,6 @@ export class EducationalItemComponent implements OnInit {
   match: any = (Math.random() * 1000).toFixed(3);
 
   ngOnInit() {
-
+    console.log(this.match)
   }
 }

@@ -48,69 +48,74 @@
 
 
 .offert{
-
   padding: 20px;
   @media (min-width: $table){
     width: 70%;
   }
-  ul{
-    li{
-      padding: 5px 0;
-    }
-  }
-  p{
-    line-height: 20px;
-    padding: 10px 0;
-  }
-  strong{
-    font-size: 17px;
-  }
 }
 
 .reviews{
-  .indoor-unit{
+  &_bg-light{
     background: #e4e4e4;
   }
-  h3{
-    padding-bottom: 30px;
-  }
-}
-
-.reviews-item{
-  background: #ffffff;
-  margin: 0 0 40px;
-  padding: 15px;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  -webkit-box-shadow: 0px 10px 0px 0px rgba(214,214,214,1);
-  -moz-box-shadow: 0px 10px 0px 0px rgba(214,214,214,1);
-  box-shadow: 0px 10px 0px 0px rgba(214,214,214,1);
-  border: solid 5px #555555;
-  border-bottom: none;
-  border-top: solid 5px #d6d6d6;
-  @media (min-width: $table){
-    margin: 0 20px 40px;
-  }
-  strong{
-    display: block;
-    font-size: 18px;
-    padding: 0 0 5px 0;
-  }
-  p{
-    padding: 0 0 15px;
-    span{
+  &__item{
+    background: #ffffff;
+    margin: 0 0 40px;
+    padding: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    -webkit-box-shadow: 0px 10px 0px 0px rgba(214,214,214,1);
+    -moz-box-shadow: 0px 10px 0px 0px rgba(214,214,214,1);
+    box-shadow: 0px 10px 0px 0px rgba(214,214,214,1);
+    border: solid 5px #555555;
+    border-bottom: none;
+    border-top: solid 5px #d6d6d6;
+    @media (min-width: $table){
+      margin: 0 20px 40px;
+    }
+    strong{
       display: block;
+      font-size: 18px;
+      padding: 0 0 5px 0;
+    }
+    p{
+      padding: 0 0 15px;
+      span{
+        display: block;
+        font-size: 16px;
+      }
+    }
+    a{
+      float: right;
+      color: #006cff;
       font-size: 16px;
+      text-decoration: underline;
     }
   }
-  a{
-    float: right;
-    color: #006cff;
-    font-size: 16px;
-    text-decoration: underline;
-  }
 
 }
+h3{
+  padding-bottom: 30px;
+}
+ul{
+  li{
+    padding: 5px 0;
+  }
+}
+ol{
+  padding: 0 0 15px 15px;
+  li{
+    list-style: decimal !important;
+  }
+}
+p{
+  line-height: 20px;
+  padding: 10px 0;
+}
+strong{
+  font-size: 17px;
+}
+
 
 .aside{
   @media (min-width: $table){

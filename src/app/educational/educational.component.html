@@ -3,7 +3,7 @@
     <h1>Тестирование</h1>
     <form #myForm="ngForm" novalidate (ngSubmit)="submit(myForm)">
 
-      <article *ngFor="let item of questionJson">
+      <article *ngFor="let item of inputJson">
         <div class="content">
           <div>
             <strong>{{item.question}}</strong>
@@ -11,26 +11,26 @@
           <div [ngSwitch]="item.type">
             <div *ngSwitchCase="'radio'">
               <label class="questionInput" *ngFor="let questionItemText of item.questionList">
-                <input  type="radio"  name="phone" ngModel>
+                <input  type="radio"  name="phone">
                 <span class="">{{questionItemText.item}}</span>
               </label>
             </div>
             <div *ngSwitchCase="'checkbox'">
               <label class="questionInput" *ngFor="let questionItemText of item.questionList">
-                <input type="checkbox" ngModel required>
+                <input name="name" type="checkbox" required ngModel>
                 <span>{{questionItemText.item}}</span>
               </label>
             </div>
             <div *ngSwitchCase="'text'">
               <label class="questionInput" *ngFor="let questionItemText of item.questionList">
-                <input type="text" name="name" [(ngModel)]="name" required>
+                <input type="text" name="name" required ngModel>
                 <span>{{questionItemText.item}}</span>
               </label>
             </div>
             <div *ngSwitchCase="'textarea'">
               <label class="questionTextarea" *ngFor="let questionItemText of item.questionList">
                 <span>{{questionItemText.item}}</span>
-                <textarea name="" ngModel required></textarea>
+                <textarea  name="name" required ngModel></textarea>
               </label>
             </div>
           </div>

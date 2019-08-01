@@ -5,6 +5,16 @@
   padding: 10px;
   position: relative;
   border: solid 1px #ffffff;
+  &__content{
+    border: solid 1px #878787;
+    position: relative;
+    background: #eeeeee;
+    z-index: 2;
+    padding: 20px;
+    strong{
+      font-family: 'lobster';
+    }
+  }
   &:before{
     position: absolute;
     display: block;
@@ -22,11 +32,12 @@
     opacity: 0.7;
   }
 }
-.contact-content{
-  border: solid 1px #878787;
-  position: relative;
-  background: #eeeeee;
-  z-index: 2;
-  padding: 20px;
+ul{
+  padding: 20px 0 0;
 }
-
+li{
+  padding-bottom: 5px;
+}
+strong{
+  padding: 0 15px 0 0;
+}
