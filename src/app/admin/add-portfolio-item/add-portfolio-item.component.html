@@ -1,0 +1,27 @@
+<form method="post" #authForm="ngForm" (ngSubmit)="addItem()" class="indoor-unit admin-portfolio base-style">
+  <h3>Добавить пункт в портфолио</h3>
+
+  <div>
+    <label for="pName">Название</label>
+    <input type="text" id="pName" name="name" [(ngModel)]="name">
+  </div>
+  <div>
+    <label for="pImg">Картинка</label>
+    <input type="text" id="pImg" name="img" [(ngModel)]="img">
+  </div>
+  <div>
+    <label for="pEngine">Движок</label>
+    <input type="text" id="pEngine" name="engine" [(ngModel)]="engine">
+  </div>
+  <div>
+    <label for="pLink">Ссылка</label>
+    <input type="text" id="pLink" name="link" [(ngModel)]="link">
+  </div>
+  <div>
+    <label for="pDescription">Описание</label>
+    <textarea name="description" id="pDescription" [(ngModel)]="pDescription"></textarea>
+  </div>
+  <div>
+    <input type="submit" value="отправить" [disabled]="!authForm.form.valid">
+  </div>
+</form>

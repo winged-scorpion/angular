@@ -1,0 +1,42 @@
+<section class="tools">
+  <div class="tools-content">
+    <h1>Тестирование</h1>
+    <form #myForm="ngForm" novalidate (ngSubmit)="submit(myForm)">
+
+      <article *ngFor="let item of questionJson">
+        <div class="content">
+          <div>
+            <strong>{{item.question}}</strong>
+          </div>
+          <div [ngSwitch]="item.type">
+            <div *ngSwitchCase="'radio'">
+              <label class="questionInput" *ngFor="let questionItemText of item.questionList">
+                <input  type="radio"  name="phone" ngModel>
+                <span class="">{{questionItemText.item}}</span>
+              </label>
+            </div>
+            <div *ngSwitchCase="'checkbox'">
+              <label class="questionInput" *ngFor="let questionItemText of item.questionList">
+                <input type="checkbox" ngModel required>
+                <span>{{questionItemText.item}}</span>
+              </label>
+            </div>
+            <div *ngSwitchCase="'text'">
+              <label class="questionInput" *ngFor="let questionItemText of item.questionList">
+                <input type="text" name="name" [(ngModel)]="name" required>
+                <span>{{questionItemText.item}}</span>
+              </label>
+            </div>
+            <div *ngSwitchCase="'textarea'">
+              <label class="questionTextarea" *ngFor="let questionItemText of item.questionList">
+                <span>{{questionItemText.item}}</span>
+                <textarea name="" ngModel required></textarea>
+              </label>
+            </div>
+          </div>
+        </div>
+      </article>
+      <input type="submit" value="отправить" [disabled]="myForm.invalid">
+    </form>
+  </div>
+</section>

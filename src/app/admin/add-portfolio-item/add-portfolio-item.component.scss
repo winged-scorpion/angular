@@ -1,0 +1,47 @@
+@import "../../base/variable.scss";
+
+.admin-portfolio{
+  label{
+    width: 20%;
+    @media (max-width: $table) {
+      width: 100%;
+    }
+  }
+  input{
+    width: 80%;
+    @media (max-width: $table) {
+      width: 100%;
+    }
+  }
+  textarea{
+    width: 80%;
+    height: 200px;
+    resize: none;
+  }
+}
+.admin-more-info{
+  input{
+    width: 50%;
+  }
+  label{
+    width: 50%;
+  }
+
+}
+.base-style{
+  h3{
+    padding-bottom: 25px;
+  }
+  div{
+    display: flex;
+    padding: 0 0 10px 0;
+    @media (max-width: $table) {
+      display: block;
+    }
+  }
+  label{
+    display: block;
+    text-align: right;
+    padding: 0 15px 0 0;
+  }
+}

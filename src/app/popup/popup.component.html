@@ -1,0 +1,16 @@
+
+<div class="popup-wrapper" *ngIf="visible">
+  <div class="popup-bg"></div>
+  <div class="popup">
+    <div id='loadBar'></div>
+    <div class="popup__close" (click)="hide()"></div>
+    <div [ngSwitch]="popup">
+      <div *ngSwitchCase="'auPopup'">
+        <app-authorization-popup></app-authorization-popup>
+      </div>
+      <div *ngSwitchCase="'sendPopup'">
+        <app-send-popup></app-send-popup>
+      </div>
+    </div>
+  </div>
+</div>

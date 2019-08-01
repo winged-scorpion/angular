@@ -1,0 +1,14 @@
+<div class="mobil-nav-button" (click)="openNav()">Меню</div>
+<nav class="nav {{this.navVisibleMobile.visibleNav}}">
+  <div class="closedNav" (click)="openNav()"></div>
+  <a routerLink="/index" routerLinkActive="active" class="nav__button-index"><span>Главная</span></a>
+  <a routerLink="/portfolio" routerLinkActive="active" class="nav__button-portfolio"><span>Портфолио</span></a>
+  <a class="nav__button-instrumental" (click)="changeNavigation('tools')"><span>Инструментальная</span></a>
+  <a routerLink="/contact" routerLinkActive="active" class="nav__button-contact"><span>Контакты</span></a>
+</nav>
+<div class="mail">
+  <input type="button" class="mail-bg" (click)="openSendPopup()">
+</div>
+
+
+

@@ -1,0 +1,11 @@
+<form action="#" method="post" class="auPopup" id="auPopup" novalidate >
+  <label for="auLogin">
+    <span class="sendPopup__head">Ваше имя:</span>
+    <input value="" name="auLogin"  id="auLogin" type="text" placeholder="login" [(ngModel)]="userLogin" required>
+  </label>
+  <label for="auPassword">
+    <span class="popup__head">Ваш пароль:</span>
+    <input value="" name="password" id="auPassword" type="password" placeholder="Ведите ваш пароль" [(ngModel)]="password" required/>
+  </label>
+  <button type="submit" id="send" class="form-button" (click)="authorizationSend()">Отправить</button>
+</form>

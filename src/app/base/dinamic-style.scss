@@ -1,0 +1,212 @@
+@import "variable";
+.xS-page{
+  float: left;
+  width:100%;
+  height: inherit;
+  position: relative;
+  text-align: center;
+  color: #000000;
+  font-size: 25px;
+  a{
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
+
+.xS-buttonNext{
+  background: url($img_url + "/slide/slide-but-left.png") no-repeat;
+  width: 113px;
+  height: 265px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  //left: -110px;
+  left: 20px;
+  top: 12px;
+  transition: $transition;
+  z-index: 2;
+  background-size: cover;
+  &:hover{
+    background: url($img_url + "/slide/slide-but-left-hover.png") no-repeat;
+  }
+  @media (max-width: $laptop){
+    display: none;
+  }
+}
+.xS-buttonPrev{
+  background: url($img_url + "/slide/slide-but-right.png") no-repeat;
+  width: 113px;
+  height: 265px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  //right: -110px;
+  right: 20px;
+  top: 12px;
+  z-index: 2;
+  transition: $transition;
+  background-size: cover;
+  &:hover{
+    background: url($img_url + "/slide/slide-but-right-hover.png") no-repeat;
+  }
+  @media (max-width: $laptop){
+    display: none;
+  }
+}
+.xS-button{
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  z-index: 2;
+  @media (max-width: $laptop){
+    bottom: 0;
+    height: 60px;
+  }
+  @media (min-width: $laptop) {
+    top: 0;
+  }
+
+  &:before,&:after{
+    content: '';
+    display: block;
+    z-index: 3;
+    height: 100%;
+    width: 200px;
+    position: absolute;
+    top: 40px;
+    @media (max-width: $table){
+      display: none;
+    }
+  }
+  &:before{
+    transform: rotate(-23deg);
+    left: -117px;
+  }
+  &:after{
+    transform: rotate(23deg);
+    right: -118px;
+  }
+
+}
+
+.xS-p{
+  z-index: 5;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 840px;
+  display: table;
+  background: url($img_url + "/slide/nav-page-bg.png") repeat-x;
+  margin: auto;
+  height: 42px;
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  right: 0;
+  @media (min-width: $table) and (max-width: $laptop){
+    width: 80%;
+  }
+  @media (min-width: $laptop) and (max-width: $desktop){
+    width: 65%;
+  }
+
+  &:after{
+    content: '';
+    display: block;
+    float: right;
+    background: url($img_url + "/slide/nav-page-bg-right.png") no-repeat;
+    width: 24px;
+    height: 42px;
+    margin: 0 -24px 0 0;
+    @media (max-width: $table){display: none;}
+  }
+  &:before{
+    content: '';
+    display: block;
+    float: left;
+    background: url($img_url + "/slide/nav-page-bg-left.png") no-repeat;
+    width: 24px;
+    height: 42px;
+    margin: 0 0 0 -24px;
+    @media (max-width: $table){display: none;}
+  }
+  li{
+    display: table-cell;
+    vertical-align: top;
+    text-align: center;
+    padding: 6px 0 0;
+    box-sizing: border-box;
+    button{
+      @media (min-width: $table){
+        cursor: pointer;
+        width: 101px;
+        height: 27px;
+        border: none;
+        display: inline-block;
+        transition: 100ms;
+      }
+      @media (max-width: $table){
+        width: 80%;
+        background: #000000;
+        border: solid 1px #ffffff;
+        height: 27px;
+        display: block;
+        margin: 2px auto 0;
+      }
+    }
+    @media (min-width: $table){
+      &:nth-child(1),&:nth-child(2),&:nth-child(3){
+        button{
+          background: url($img_url + "/slide/button-left.png");
+          &:hover{
+            background: url($img_url + "/slide/button-hover-left.png");
+          }
+        }
+      }
+      &:nth-child(4),&:nth-child(5),&:nth-child(6){
+        button{
+          background: url($img_url + "/slide/button-right.png");
+          &:hover{
+            background: url($img_url + "/slide/button-hover-right.png");
+          }
+        }
+      }
+    }
+  }
+  .xS-button-active{
+    button{
+      height: 25px;
+      margin: 2px auto 0;
+      @media (max-width: $table){
+        background: #313131;
+        border-bottom: solid 3px red;
+        height: 27px;
+        margin-top: 2px;
+      }
+    }
+    @media (min-width: $table){
+      &:nth-child(1),&:nth-child(2),&:nth-child(3){
+        button{
+          background: url($img_url + "/slide/button-active-left.png");
+          &:hover{
+            background: url($img_url + "/slide/button-active-left.png");
+          }
+        }
+      }
+      &:nth-child(4),&:nth-child(5),&:nth-child(6){
+        button{
+          background: url($img_url + "/slide/button-active-right.png");
+          &:hover{
+            background: url($img_url + "/slide/button-active-right.png");
+          }
+        }
+      }
+    }
+
+  }
+
+}

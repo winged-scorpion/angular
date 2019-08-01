@@ -1,0 +1,520 @@
+@import "../base/variable.scss";
+nav{
+  span{
+    cursor: pointer;
+    text-shadow: rgba(255, 255, 255, 0.35) 1px 1px, rgba(20, 48, 245, 0.7) 9px 3px 3px;
+    font-family: 'hackedregular';
+    color: #ffffff;
+    -webkit-transition: inherit;
+    transition: inherit;
+  }
+  a{
+    cursor: pointer;
+  }
+}
+.mail {
+  background: url($img_url + "/nav/mail.png") 0 0;
+  width: 186px;
+  height: 81px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 16px;
+  cursor: pointer;
+}
+@media (max-width: $table){
+  .mobil-nav-button{
+    display: table-cell;
+    vertical-align: top;
+    line-height: 50px;
+    width: 70%;
+    height: 100%;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: left;
+    padding: 0 0 0 50px;
+    border-right: solid 1px #000;
+    background: url($img_url + "/nav/mobil-naw-bg.png") no-repeat left 20px center;
+  }
+  .mail{
+    width: 30%;
+    height: 100%;
+    z-index: 4;
+    top: auto;
+    position: relative;
+    right: auto;
+    left: auto;
+    background: none;
+    &-bg{
+      margin: 0 auto 0;
+      width: 44px;
+      height: 26px;
+      position: relative;
+      border: none;
+      display: block;
+      background: url($img_url +  '/nav/t.png') no-repeat center;
+      background-size: contain;
+    }
+  }
+  .closedNav{
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    width: 30px;
+    height: 30px;
+    background: #ffffff;
+    z-index: 4;
+    cursor: pointer;
+    border-bottom: solid 10px #cbcbcb;
+    border-left: solid 10px #444444;
+    transform: rotate(0deg);
+    &:before{
+      content: "";
+      background: url($img_url + "/close.png");
+      width: 20px;
+      height: 20px;
+      transform: rotate(45deg);
+      display: block;
+      border-radius: 100%;
+    }
+  }
+  nav{
+    transition: $transition;
+    position: absolute;
+    left: 0;
+    top: -1000%;
+    background: #181818;
+    z-index: 1000;
+    width: 100%;
+    &.none{
+      border-bottom: solid 4px #0018ff;
+    }
+    &.show{
+      border-bottom: solid 4px #d91924;
+      top: 0;
+    }
+    a{
+      display: block;
+      width: 100%;
+      background: none;
+      height: 50px;
+      float: none;
+      z-index: 3;
+      position: relative;
+      padding: 0 0 0 20px;
+      box-sizing: border-box;
+      border-bottom: solid 1px #ffffff;
+      &:last-of-type{
+        border-bottom: none;
+      }
+      span{
+        font-size: 24px;
+        line-height: 50px;
+        text-align: left;
+        float: left;
+        margin: 0;
+        font-style: italic;
+        text-shadow: rgba(255, 255, 255, 0.35) 1px 1px, rgba(20, 48, 245, 0.7) 9px 3px 3px;
+        font-family: 'hackedregular';
+        color: #ffffff;
+      }
+    }
+  }
+}
+@media (min-width: $table) and (max-width: $laptop){
+  nav{
+    z-index: 1;
+    width: 96%;
+    position: relative;
+    background: none;
+    padding: 5px 10px 5px 12px;
+    height: 111px;
+    margin: 0 auto;
+  }
+
+  .closedNav{
+    display: none;
+  }
+  .nav{
+    a{
+      width: 40%;
+      background: url($img_url + "/nav/btn-bg-mobil.png");
+      height: 50px;
+      float: left;
+      z-index: 3;
+      position: relative;
+      padding: 0 0 0 20px;
+      box-sizing: border-box;
+      margin-bottom: 5px;
+      span{
+        font-size: 24px;
+        line-height: 50px;
+        text-align: left;
+      }
+      &:before,&:after{
+        width: 7px;
+        height: 50px;
+        position: absolute;
+        content: '';
+        top: 0;
+      }
+      &:before {
+        background: url($img_url + "/nav/btn-bg-mobil-left.png");
+        left: -7px;
+      }
+      &:after{
+        background: url($img_url + "/nav/btn-bg-mobil-right.png");
+        right: -7px;
+      }
+      &:nth-child(odd){
+        margin-left:  20%;
+      }
+    }
+    &__button-index,&__button-portfolio{
+      margin-right: 0;
+    }
+  }
+  .mail{
+    width: 15%;
+    height: 105px;
+    z-index: 4;
+    top: 5px;
+    background: url($img_url + "/nav/mail-mobil.png");
+    &:before,&:after {
+      width: 7px;
+      height: 105px;
+      position: absolute;
+      content: '';
+      top: 0;
+    }
+    &:before{
+      background: url($img_url + "/nav/mail-mobil-left.png");
+      left: -7px;
+    }
+    &:after{
+      background: url($img_url + "/nav/mail-mobil-right.png");
+      right: -7px;
+    }
+    &-bg{
+      background: url($img_url + "/nav/t.png") no-repeat center;
+      border: none;
+      width: 100%;
+      margin: 0 auto 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      cursor: pointer;
+    }
+  }
+  .mobil-nav-button{
+    display: none;
+  }
+}
+@media (min-width: $laptop){
+  nav{
+    z-index: 1;
+    a{
+      display: inline-block;
+      position: relative;
+      vertical-align: top;
+      color: #ffffff;
+      text-align: center;
+      font-style: italic;
+      letter-spacing: 0.06em;
+      z-index: 2;
+      transition: $transition;
+      background-size: cover;
+      cursor: pointer;
+      &:hover{
+        background-size: cover;
+      }
+      span{
+        cursor: pointer;
+        text-shadow: rgba(255, 255, 255, 0.35) 1px 1px, rgba(20, 48, 245, 0.7) 9px 3px 3px;
+        font-family: 'hackedregular';
+        color: #ffffff;
+        transition: inherit;
+      }
+      &:hover{
+        span{
+          text-shadow: rgba(255, 255, 255, 0.35) 1px 1px, rgba(245, 20, 20, 0.7) 9px 3px 3px;
+        }
+      }
+      &.active{
+        span{
+          text-shadow: rgba(255, 255, 255, 0.35) 1px 1px, rgba(245, 20, 20, 0.7) 9px 3px 3px;
+        }
+      }
+    }
+  }
+  .nav{
+    &__button-index,&__button-portfolio{
+      width: 380px;
+      height: 53px;
+      line-height: 50px;
+      span{
+        font-size: 24px;
+        width: 100%;
+      }
+    }
+    &__button-instrumental,&__button-contact{
+      width: 337px;
+      height: 47px;
+      line-height: 46px;
+      span{
+        font-size: 18px;
+        width: 100%;
+      }
+    }
+    &__button-index{
+      span{
+        margin-right: 7px;
+      }
+      background: url($img_url + "/nav/button-top-left.png");
+      margin-right: 70px;
+      &:hover{
+        background: url($img_url + "/nav/button-top-left-hover.png");
+      }
+      &.active{
+        background: url($img_url + "/nav/button-top-left-hover.png");
+        background-size: cover;
+      }
+    }
+    &__button-portfolio{
+      span{
+        margin-left: 7px;
+      }
+      background: url($img_url + "/nav/button-top-right.png");
+      margin-left: 75px;
+      &:hover{
+        background: url($img_url + "/nav/button-top-right-hover.png");
+      }
+      &.active{
+        background: url($img_url + "/nav/button-top-right-hover.png");
+        background-size: cover;
+      }
+    }
+    &__button-instrumental{
+      span{
+        margin-right: 7px;
+      }
+      background: url($img_url + "/nav/button-bottom-left.png");
+      margin: 4px 0 0 0;
+      &:hover{
+        background: url($img_url + "/nav/button-bottom-left-hover.png");
+      }
+      &.active{
+        background: url($img_url + "/nav/button-bottom-left-hover.png");
+        background-size: cover;
+      }
+    }
+    &__button-contact{
+      span{
+        margin-left: 7px;
+      }
+      background: url($img_url + "/nav/button-bottom-right.png");
+      margin: 4px 0 0 0;
+      &:hover{
+        background: url($img_url + "/nav/button-bottom-right-hover.png");
+      }
+      &.active{
+        background: url($img_url + "/nav/button-bottom-right-hover.png");
+        background-size: cover;
+      }
+    }
+  }
+  .mail{
+    z-index: 2;
+  }
+
+  .mail{
+    background: url($img_url + "/nav/mail.png") 0 0;
+    width: 186px;
+    height: 81px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 16px;
+    cursor: pointer;
+    transition: $transition;
+    .mail-bg{
+      background: url($img_url + "/nav/t.png") no-repeat center;
+      width: 74px;
+      height: 48px;
+      margin: 12px auto 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      transition: inherit;
+      border: none;
+      cursor: pointer;
+    }
+    &:hover{
+      background: url($img_url + "/nav/mail-hover.png");
+      .mail-bg{
+        background: url($img_url + "/nav/th.png") no-repeat center;
+      }
+    }
+  }
+  .message-sent{
+    color: #3c78b2;
+    strong{
+      color: #258148;
+    }
+  }
+  .message-in-processing{
+    span{
+      font-size: 14px;
+      padding: 0 0 0 10px;
+      line-height: 16px;
+      display: inline-block;
+      vertical-align: top;
+    }
+  }
+  .mobil-nav-button{
+    display: none;
+  }
+  .text-content{
+    strong{
+      display: inline-block;
+      padding-top: 10px;
+    }
+  }
+  .b__portfolio-page{
+
+  }
+  .b__the-proposal{
+    width: 1096px;
+    margin:20px auto 0;
+    padding: 10px;
+    box-sizing: border-box;
+    position: relative;
+    border: solid 1px #ffffff;
+    &:before{
+      position: absolute;
+      display: block;
+      content: '';
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      border-top: solid 10px #ffffff;
+      border-bottom: solid 10px #ffffff;
+      border-right: solid 10px #c2c2c2;
+      border-left: solid 10px #c2c2c2;
+      box-sizing: border-box;
+      opacity: 0.7;
+    }
+  }
+  .the-proposal-container{
+    border: solid 1px #878787;
+    position: relative;
+    background: #e1e1e1;
+    z-index: 2;
+    padding: 20px;
+    p{
+      padding: 10px 0 0;
+    }
+  }
+
+  .open-popup{
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  form{
+    width: 300px;
+    height: 300px;
+    margin: -150px auto 0;
+    position: absolute;
+    display: none;
+    left: 0;
+    right: 0;
+    top: 50%;
+    background: #fbfbfb;
+    border: solid 1px #e8e8e8;
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 2;
+    opacity: 0;
+    transform: scale(.85) translate3d(0,-10%,0);
+    transition: transform .2s cubic-bezier(.215,.61,.355,1), opacity 150ms cubic-bezier(.215,.61,.355,1);
+    *{
+      font-size: 14px;
+      outline: none;
+    }
+    input{
+      width: 100%;
+      border: solid 1px #e8e8e8;
+      padding: 5px;
+      box-sizing: border-box;
+    }
+    textarea{
+      width: 100%;
+      height: 130px;
+      border: solid 1px #e8e8e8;
+      resize: none;
+      padding: 5px;
+      box-sizing: border-box;
+    }
+    button{
+      width: 100%;
+      background: #ccc;
+      border-radius: 5px;
+      height: 40px;
+      cursor: pointer;
+    }
+    div{
+      padding: 0 0 15px;
+    }
+  }
+
+  .bg{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    opacity: 0;
+    transition: 0.3s;
+  }
+  .show{
+    opacity: 1;
+    transform: scale(1) translate3d(0,0,0);
+    transition: transform .2s cubic-bezier(.215,.61,.355,1), opacity .3s cubic-bezier(.215,.61,.355,1);
+  }
+  .showBg{
+    opacity: 0.2;
+  }
+
+  .preload{
+    display: block;
+    margin: 20px 0;
+    text-align: center;
+    span{
+      font-family: 'hackedregular';
+      font-style: italic;
+      letter-spacing: 0.06em;
+      color: #ffffff;
+      font-size: 22px;
+      transition: 0.3s;
+
+      text-shadow: rgba(255, 255, 255, 0.35) 1px 1px, rgba(20, 48, 245, 0.7) 9px 3px 3px;
+    }
+    &:hover{
+      span{
+        text-shadow: rgba(255, 255, 255, 0.35) 1px 1px, rgba(245, 20, 20, 0.7) 9px 3px 3px;
+      }
+    }
+  }
+}
+

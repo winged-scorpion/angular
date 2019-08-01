@@ -1,0 +1,81 @@
+@import "variable.scss";
+@font-face {
+  font-family: 'hackedregular';
+  src: url($font_src + 'hackedregular/yjg6rjgk-webfont.eot');
+  src: url($font_src + 'hackedregular/yjg6rjgk-webfont.eot?#iefix') format('embedded-opentype'),
+  url($font_src + 'hackedregular/yjg6rjgk-webfont.woff2') format('woff2'),
+  url($font_src + 'hackedregular/yjg6rjgk-webfont.woff') format('woff'),
+  url($font_src + 'hackedregular/yjg6rjgk-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "PTSansRegular";
+  src: url($font_src + 'PTSansRegular/PTSansRegular.eot');
+  src: url($font_src + 'PTSansRegular/PTSansRegular.eot?#iefix')format("embedded-opentype"),
+  url($font_src + 'PTSansRegular/PTSansRegular.woff') format("woff"),
+  url($font_src + 'PTSansRegular/PTSansRegular.ttf') format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'lobster';
+  src: url($font_src + 'lobster/3952-webfont.eot');
+  src: url($font_src + 'lobster/3952-webfont.eot?#iefix') format('embedded-opentype'),
+  url($font_src + 'lobster/3952-webfont.woff2') format('woff2'),
+  url($font_src + 'lobster/3952-webfont.woff') format('woff'),
+  url($font_src + 'lobster/3952-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+.flex{
+  display: flex;
+}
+.main{
+  position: relative;
+  padding-bottom: 100px;
+}
+.outdoor-unit {
+  background: #c6c6c6;
+  padding: 10px;
+  box-sizing: border-box;
+  position: relative;
+}
+.outdoor-unit:before {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  border-top: solid 10px #ffffff;
+  border-bottom: solid 10px #ffffff;
+  border-right: solid 10px #c2c2c2;
+  border-left: solid 10px #c2c2c2;
+  box-sizing: border-box;
+  opacity: 0.7;
+}
+.outdoor-unit:after {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  border: solid 1px #000000;
+  box-sizing: border-box;
+}
+.indoor-unit{
+  border: solid 1px #ffffff;
+  position: relative;
+  z-index: 3;
+  padding: 15px;
+}
+.clearFix{
+  display: block;
+  clear: both;
+}

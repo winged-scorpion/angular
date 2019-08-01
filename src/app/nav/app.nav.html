@@ -1,0 +1,13 @@
+<section  [ngSwitch]="page" class="navigation">
+  <app-nav-work class="nav-wrapper" *ngSwitchCase="'work'" (onChanged)="onChanged($event)" (statusNav)="statusNav($event)"></app-nav-work>
+  <app-nav-tools class="nav-wrapper" *ngSwitchCase="'tools'" (onChanged)="onChanged($event)" (statusNav)="statusNav($event)"></app-nav-tools>
+  <app-nav-work class="nav-wrapper" *ngSwitchDefault (onChanged)="onChanged($event)" (statusNav)="statusNav($event)"></app-nav-work>
+</section>
+
+
+
+
+
+
+
+

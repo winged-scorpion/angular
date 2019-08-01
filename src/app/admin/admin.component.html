@@ -1,0 +1,53 @@
+<section class="contact">
+  <div class="admin-content">
+    <div class="outdoor-unit">
+      <div class="indoor-unit admin-more-info base-style">
+        <ul class="tab {{active}}">
+          <li>
+            <button (click)="portfolioTab(1)">Редактировать пункты</button>
+          </li>
+          <li>
+            <button (click)="portfolioTab(2)">Добавить пункт</button>
+          </li>
+          <li>
+            <button (click)="portfolioTab(3)">Редактировать тестовые пункты</button>
+          </li>
+        </ul>
+        <div class="indoor-unit" [ngSwitch]="portfolio">
+          <div class="outdoor-unit">
+              <div *ngSwitchCase="1">
+                <select name="" id="">
+                  <option *ngFor="let item of info" value="{{item.id}}">{{item.name}}</option>
+                </select>
+                <app-portfolio-setting *ngFor="let item of info" [infoText] = "item"></app-portfolio-setting>
+              </div>
+              <app-add-portfolio-item *ngSwitchCase="2"></app-add-portfolio-item>
+              <app-editing-questions *ngSwitchCase="3"></app-editing-questions>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="outdoor-unit">
+      <form action="" class="indoor-unit admin-more-info base-style">
+        <h3>Разные настройки</h3>
+        <div>
+          <label for="pPassword">Сменить пароль админки</label>
+          <input type="text" id="pPassword" name="password">
+        </div>
+        <div>
+          <label for="pTime">Сменить Время</label>
+          <input type="text" id="pTime" name="time">
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="admin-content">
+    <div class="outdoor-unit">
+      <div class="indoor-unit">
+        <h3>просмотры, и прочее</h3>
+        <button (click)="logout()">выйти</button>
+      </div>
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,100 @@
+[
+  {
+    "active": true,
+    "type": "radio",
+    "question": "вопрос1",
+    "questionList": [
+      {
+        "item": "сделай то"
+      },
+      {
+        "item": "сделай это"
+      },
+      {
+        "item": "сделай всё"
+      }
+    ]
+  },
+  {
+    "active": false,
+    "type": "checkbox",
+    "question": "вопрос2",
+    "questionList": [
+      {
+        "item": "сделай то"
+      },
+      {
+        "item": "сделай это"
+      },
+      {
+        "item": "сделай всё"
+      }
+    ,
+      {
+        "item": "сделай то ещё"
+      }
+    ]
+  },
+  {
+    "active": false,
+    "type": "text",
+    "question": "вопрос3",
+    "questionList": [
+      {
+        "item": "сделай то"
+      },
+      {
+        "item": "сделай это"
+      },
+      {
+        "item": "сделай всё"
+      }
+    ]
+  },
+  {
+    "active": false,
+    "type": "textarea",
+    "question": "вопрос4",
+    "questionList": [
+      {
+        "item": "сделай то"
+      }
+    ]
+  },
+  {
+    "active": false,
+    "type": "checkbox",
+    "question": "вопрос2",
+    "questionList": [
+      {
+        "item": "сделай то"
+      },
+      {
+        "item": "сделай это"
+      },
+      {
+        "item": "сделай всё"
+      }
+    ,
+      {
+        "item": "сделай то ещё"
+      }
+    ]
+  },
+  {
+    "active": false,
+    "type": "radio",
+    "question": "вопрос1",
+    "questionList": [
+      {
+        "item": "сделай то"
+      },
+      {
+        "item": "сделай это"
+      },
+      {
+        "item": "сделай всё"
+      }
+    ]
+  }
+]

@@ -1,0 +1,97 @@
+@import "../base/variable.scss";
+
+.footer{
+  padding: 0 15px;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,ffffff+2,ffffff+98,7db9e8+100&1+0,0.5+2,0.5+98,1+100 */
+  background: -moz-linear-gradient(top, rgba(30,87,153,1) 0%, rgba(255,255,255,0.5) 2%, rgba(255,255,255,0.5) 98%, rgba(125,185,232,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(30,87,153,1) 0%,rgba(255,255,255,0.5) 2%,rgba(255,255,255,0.5) 98%,rgba(125,185,232,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(30,87,153,1) 0%,rgba(255,255,255,0.5) 2%,rgba(255,255,255,0.5) 98%,rgba(125,185,232,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
+  @media (min-width: $table){
+    background: url($img_url + "/footer-center.png") repeat-x top;
+    height: 76px;
+    width: calc(100% - 94px);
+    max-width: 1080px;
+    position: absolute;
+    margin: 20px auto 0;
+    display: flex;
+    z-index: 2;
+    padding: 22px 0 ;
+    box-sizing: border-box;
+    justify-content: space-between;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    &:before{
+      display:block;
+      position: absolute;
+      left: -47px;
+      top: 0;
+      content: '';
+      z-index: 1;
+      background: url($img_url + "/footer-left.png") no-repeat;
+      width: 47px;
+      height: 76px;
+    }
+    &:after{
+      background: url($img_url + "//footer-right.png") no-repeat;
+      width: 47px;
+      height: 76px;
+      display:block;
+      position: absolute;
+      right: -47px;
+      top: 0;
+      content: '';
+      z-index: 1;
+    }
+    .soc{
+      display: flex;
+    }
+  }
+  @media (max-width: $table){
+    padding: 20px 0;
+    .soc{
+      display: block;
+      div{
+        padding: 10px 0;
+      }
+    }
+  }
+}
+
+
+.vk,.mail-link,.gMail-link{
+  color: #006cff;
+  font-weight: 900;
+  margin: 0 25px 0 0;
+  &:before{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 10px 0 0;
+    content: '';
+  }
+}
+.vk{
+  text-decoration: underline;
+  &:before{
+    background: url($img_url + "/vk.png");
+    width: 36px;
+    height: 36px;
+  }
+}
+.mail-link{
+  &:before{
+    background: url($img_url + "/email.png");
+    width: 30px;
+    height: 30px;
+  }
+}
+.gMail-link{
+  margin: 0 0 0 0;
+  &:before{
+    background: url($img_url + "/gmail.png");
+    width: 30px;
+    height: 29px;
+  }
+}
+

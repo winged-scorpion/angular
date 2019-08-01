@@ -1,0 +1,24 @@
+<form action="#" method="post" class="sendPopup" id="sendPopup" novalidate [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <label for="sendLogin">
+    <span class="sendPopup__head">Ваше имя:</span>
+    <input value="" name="name" id="sendLogin" type="text" placeholder="Ведите имя" formControlName="name" required>
+    <div *ngIf="formErrors.name" class="alert alert_danger">
+      {{formErrors.name}}
+    </div>
+  </label>
+  <label for="sendEmail">
+    <span class="sendPopup__head">Ваш email:</span>
+    <input value="" name="email" id="sendEmail" type="text" placeholder="Ведите ваш email" formControlName="email" required/>
+    <div *ngIf="formErrors.email" class="alert alert_danger">
+      {{formErrors.email}}
+    </div>
+  </label>
+  <label for="sendText">
+    <span class="sendPopup__head">Ваше сообщение:</span>
+    <textarea name="send" id="sendText" placeholder="Ваше сообщение:"  formControlName="send" required></textarea>
+  </label>
+  <div *ngIf="formErrors.send" class="alert alert_danger">
+    {{formErrors.send}}
+  </div>
+  <button type="submit" class="form-button" [disabled]="loginForm.invalid">Отправить</button>
+</form>

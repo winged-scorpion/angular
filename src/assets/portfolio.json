@@ -1,0 +1,29 @@
+[
+  {
+    "status":true,
+    "name":"\u0410\u043f\u0442\u0435\u043a\u0430",
+    "img":"assets\/img\/portfolio\/zhazhda.jpg",
+    "engine":"Bitrix",
+    "description":"\u041f\u0440\u043e\u0434\u043e\u0436\u0430 \u043b\u0435\u043a\u0430\u0440\u0441\u0442\u0432",
+    "link":"https://apteka.ru",
+    "id":"1"
+  },
+  {
+    "status":false,
+    "name":"\u0416\u0410\u0416\u0414\u0410 \u0431\u0438\u0437\u043d\u0435\u0441 \u0436\u0443\u0440\u043d\u0430\u043b",
+    "img":"assets\/img\/portfolio\/zhazhda.jpg",
+    "engine":"WordPress",
+    "description":"\u0411\u0438\u0437\u043d\u0435\u0441 \u0436\u0443\u0440\u043d\u0430\u043b",
+    "link":"https://zhazhda.biz",
+    "id":"2"
+  },
+  {
+    "status":true,
+    "name":"\u0413\u0430\u043c\u0431\u0440\u0438\u043d\u0443\u0441",
+    "img":"assets\/img\/portfolio\/zhazhda.jpg",
+    "engine":"Bitrix",
+    "description":"\u041f\u0438\u0432\u043e",
+    "link":"http://www.gambrinus-izh.ru/",
+    "id":"3"
+  }
+]
