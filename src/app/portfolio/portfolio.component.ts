@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
+import {portfolioServices} from '../portfolioServices';
 
-declare var require: any;
-const infoObject = require('assets/portfolio.json');
 
 @Component({
   moduleId: module.id,
@@ -10,5 +9,19 @@ const infoObject = require('assets/portfolio.json');
 })
 
 export class PortfolioComponent {
-  info = infoObject;
+
+  constructor(private porJson: portfolioServices) {
+  }
+  const;
+  info: any;
+
+  ngOnInit() {
+    this.porJson.get().subscribe(value => {
+        this.info = value;
+        console.log(this.info)
+      },
+      error => {
+        console.log('error');
+      });
+  }
 }

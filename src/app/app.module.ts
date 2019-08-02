@@ -43,6 +43,11 @@ import {ObservableTestComponent} from './instrumental/observable/observable-test
 import {EducationalComponent} from './educational/educational.component';
 import {EditingQuestionsComponent} from './admin/editing-questions/editing-questions.component';
 import {QuestionJson} from './educationServices';
+import {portfolioServices} from "./portfolioServices";
+
+
+
+
 
 
 
@@ -88,7 +93,7 @@ import {QuestionJson} from './educationServices';
     HttpClientModule
 
   ],
-  providers: [PopupShow, AuthGuard, SafeUser, OpenNav, SubscribeTest, HttpService, AuthorizationService, SubscribeTest, QuestionJson],
+  providers: [PopupShow, AuthGuard, SafeUser, OpenNav, SubscribeTest, HttpService, AuthorizationService, SubscribeTest, QuestionJson, portfolioServices],
   bootstrap: [AppComponent]
 })
 export class AppModule {

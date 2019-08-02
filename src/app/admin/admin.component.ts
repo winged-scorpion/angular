@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {SafeUser} from '../safe.user';
 
-declare var require: any;
-const infoObject = require('assets/portfolio.json');
+
+
 
 @Component({
   selector: 'app-admin',
@@ -13,8 +13,8 @@ export class AdminComponent implements OnInit {
   constructor(public authService: SafeUser) {
   }
 
-  info = infoObject;
-
+  const;
+  info: any;
   portfolio: number = 3;
   active: string = 'editing-questions';
 
@@ -40,5 +40,4 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
 
-  }
 }

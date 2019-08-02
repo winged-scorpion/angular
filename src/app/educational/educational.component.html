@@ -17,7 +17,7 @@
             </div>
             <div *ngSwitchCase="'checkbox'">
               <label class="questionInput" *ngFor="let questionItemText of item.questionList">
-                <input name="{{questionItemText.name}}" value="{{questionItemText.item}}" type="checkbox"  ngModel required>
+                <input name="{{questionItemText.name}}" value="{{questionItemText.item}}" type="checkbox"  ngModel >
                 <span>{{questionItemText.item}}</span>
               </label>
             </div>

@@ -1,39 +1,40 @@
 
-
-
 <article>
-  <figure class="base-style admin-portfolio">
-    <div>
-      <p>отображение</p>
-      <input type="checkbox">
-    </div>
-    <div>
-      <p>Картинка</p>
-      <div><img width="100%" height="100%" src='{{infoText.img}}' alt="{{infoText.link}}"></div>
-    </div>
-    <div>
-      <p>Движок</p>
+  <form action="">
+    <figure class="base-style admin-portfolio" *ngFor="let item of info">
       <div>
-        <input type="text" placeholder="{{infoText.engine}}">
+        <p>отображение</p>
+        <input type="checkbox">
       </div>
-    </div>
-    <div>
-      <p>Название</p>
       <div>
-        <input type="text" placeholder="{{infoText.name}}">
+        <p>Картинка</p>
+        <div><img width="100%" height="100%" src='{{item.img}}' alt="{{item.link}}"></div>
       </div>
-    </div>
-    <div>
-      <p>Описание</p>
       <div>
-        <input type="text" placeholder="{{infoText.description}}">
+        <p>Движок</p>
+        <div>
+          <input type="text" placeholder="{{item.engine}}">
+        </div>
       </div>
-    </div>
-    <div>
-      <p>Ссцлка</p>
       <div>
-        <input type="text" placeholder="{{infoText.link}}">
+        <p>Название</p>
+        <div>
+          <input type="text" placeholder="{{item.name}}">
+        </div>
       </div>
-    </div>
-  </figure>
+      <div>
+        <p>Описание</p>
+        <div>
+          <input type="text" placeholder="{{item.description}}">
+        </div>
+      </div>
+      <div>
+        <p>Ссцлка</p>
+        <div>
+          <input type="text" placeholder="{{item.link}}">
+        </div>
+      </div>
+    </figure>
+  </form>
+
 </article>

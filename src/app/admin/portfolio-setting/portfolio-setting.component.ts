@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {portfolioServices} from "../../portfolioServices";
 
 
 @Component({
@@ -8,13 +9,21 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 
 export class PortfolioSettingComponent implements OnInit {
+  constructor(private porJson: portfolioServices) {
+  }
 
-  @Input() infoText;
-  constructor() { }
+  info: any;
+
+
 
   ngOnInit() {
-
-
+    this.porJson.get().subscribe(value => {
+        this.info = value;
+        console.log(this.info)
+      },
+      error => {
+        console.log('error');
+      });
   }
 
 }
