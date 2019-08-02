@@ -15,8 +15,8 @@ export class AdminComponent implements OnInit {
 
   const;
   info: any;
-  portfolio: number = 3;
-  active: string = 'editing-questions';
+  portfolio: number = 1;
+  active: string = 'edit-item';
 
   portfolioTab(item) {
     this.portfolio = item;

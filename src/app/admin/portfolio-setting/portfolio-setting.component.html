@@ -1,10 +1,12 @@
 
-<article>
-  <form action="">
+<article class="edit-portfolio">
+  <form  #myForm="ngForm"  (ngSubmit)="submit(myForm)">
+    <div></div>
     <figure class="base-style admin-portfolio" *ngFor="let item of info">
+      <input type="hidden" id="{{item.id}}" ngModel>
       <div>
         <p>отображение</p>
-        <input type="checkbox">
+        <input type="checkbox" name="show" ngModel>
       </div>
       <div>
         <p>Картинка</p>
@@ -13,28 +15,29 @@
       <div>
         <p>Движок</p>
         <div>
-          <input type="text" placeholder="{{item.engine}}">
+          <input type="text" placeholder="{{item.engine}}" name="engine" value="{{item.engine}}" ngModel>
         </div>
       </div>
       <div>
         <p>Название</p>
         <div>
-          <input type="text" placeholder="{{item.name}}">
+          <input type="text" placeholder="{{item.name}}" name="name" value="{{item.name}}" ngModel>
         </div>
       </div>
       <div>
         <p>Описание</p>
         <div>
-          <input type="text" placeholder="{{item.description}}">
+          <input type="text" placeholder="{{item.description}}" name="description" value="{{item.description}}" ngModel>
         </div>
       </div>
       <div>
         <p>Ссцлка</p>
         <div>
-          <input type="text" placeholder="{{item.link}}">
+          <input type="text" placeholder="{{item.link}}" name="link" value="{{item.link}}" ngModel>
         </div>
       </div>
     </figure>
+    <input type="submit" value="отправить">
   </form>
 
 </article>

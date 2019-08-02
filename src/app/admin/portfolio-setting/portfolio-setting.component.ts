@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {portfolioServices} from "../../portfolioServices";
-
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-portfolio-setting',
@@ -13,7 +13,9 @@ export class PortfolioSettingComponent implements OnInit {
   }
 
   info: any;
-
+  submit(form: NgForm) {
+    console.log(form.value);
+  }
 
 
   ngOnInit() {
