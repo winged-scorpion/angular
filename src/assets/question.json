@@ -3,6 +3,7 @@
     "active": true,
     "type": "radio",
     "question": "вопрос1",
+    "name": "",
     "questionList": [
       {
         "item": "сделай то"
@@ -16,84 +17,39 @@
     ]
   },
   {
-    "active": false,
+    "active": true,
     "type": "checkbox",
     "question": "вопрос2",
     "questionList": [
       {
-        "item": "сделай то"
+        "item": "сделай то",
+        "name": ""
       },
       {
-        "item": "сделай это"
-      },
-      {
-        "item": "сделай всё"
-      }
-    ,
-      {
-        "item": "сделай то ещё"
+        "item": "сделай это",
+        "name": ""
       }
     ]
   },
   {
-    "active": false,
+    "active": true,
     "type": "text",
     "question": "вопрос3",
+    "name": "",
     "questionList": [
       {
         "item": "сделай то"
-      },
-      {
-        "item": "сделай это"
-      },
-      {
-        "item": "сделай всё"
       }
     ]
   },
   {
-    "active": false,
+    "active": true,
     "type": "textarea",
-    "question": "вопрос4",
+    "question": "вопрос0",
+    "name": "",
     "questionList": [
       {
         "item": "сделай то"
-      }
-    ]
-  },
-  {
-    "active": false,
-    "type": "checkbox",
-    "question": "вопрос2",
-    "questionList": [
-      {
-        "item": "сделай то"
-      },
-      {
-        "item": "сделай это"
-      },
-      {
-        "item": "сделай всё"
-      }
-    ,
-      {
-        "item": "сделай то ещё"
-      }
-    ]
-  },
-  {
-    "active": false,
-    "type": "radio",
-    "question": "вопрос1",
-    "questionList": [
-      {
-        "item": "сделай то"
-      },
-      {
-        "item": "сделай это"
-      },
-      {
-        "item": "сделай всё"
       }
     ]
   }

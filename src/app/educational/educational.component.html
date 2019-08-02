@@ -11,26 +11,26 @@
           <div [ngSwitch]="item.type">
             <div *ngSwitchCase="'radio'">
               <label class="questionInput" *ngFor="let questionItemText of item.questionList">
-                <input  type="radio"  name="phone">
+                <input  type="radio" value="{{questionItemText.item}}" name="{{item.name}}" ngModel required>
                 <span class="">{{questionItemText.item}}</span>
               </label>
             </div>
             <div *ngSwitchCase="'checkbox'">
               <label class="questionInput" *ngFor="let questionItemText of item.questionList">
-                <input name="name" type="checkbox" required ngModel>
+                <input name="{{questionItemText.name}}" value="{{questionItemText.item}}" type="checkbox"  ngModel required>
                 <span>{{questionItemText.item}}</span>
               </label>
             </div>
             <div *ngSwitchCase="'text'">
               <label class="questionInput" *ngFor="let questionItemText of item.questionList">
-                <input type="text" name="name" required ngModel>
+                <input type="text" name="{{item.name}}"  ngModel required>
                 <span>{{questionItemText.item}}</span>
               </label>
             </div>
             <div *ngSwitchCase="'textarea'">
               <label class="questionTextarea" *ngFor="let questionItemText of item.questionList">
                 <span>{{questionItemText.item}}</span>
-                <textarea  name="name" required ngModel></textarea>
+                <textarea  name="{{item.name}}"  ngModel required></textarea>
               </label>
             </div>
           </div>
