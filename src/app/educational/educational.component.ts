@@ -21,8 +21,9 @@ export class EducationalComponent implements OnInit {
   }
 
 
+
   submit(form: NgForm) {
-    console.log(form.value);
+    this.eqJson.sendAnswer(form.value);
   }
 
   sort(arr) {
@@ -45,13 +46,15 @@ export class EducationalComponent implements OnInit {
           }
         }
         this.inputJson.push(arr[i]);
+
       }
     }
   }
 
   ngOnInit() {
-    this.eqJson.get().subscribe(value => {
-        this.questionJson = value;
+    this.eqJson.get().subscribe((response) => {
+        this.questionJson = response;
+        console.log(this.questionJson);
         this.sort(this.questionJson)
       },
       error => {

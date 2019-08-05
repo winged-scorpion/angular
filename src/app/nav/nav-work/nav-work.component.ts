@@ -1,7 +1,7 @@
 import {Component, Output, EventEmitter} from '@angular/core';
 import {PopupShow} from '../../statusPopup';
-import {FormBuilder} from '@angular/forms';
-import {Subscription} from 'rxjs/Subscription';
+
+
 import {OpenNav} from '../openNav';
 
 
@@ -14,9 +14,7 @@ import {OpenNav} from '../openNav';
 export class NavWorkComponent {
   visible: boolean = true;
   current: boolean;
-  subscription: Subscription;
-
-  constructor(private popupShow: PopupShow, private navVisibleMobile: OpenNav) {
+  constructor(private popupShow: PopupShow, public navVisibleMobile: OpenNav) {
   }
 
   openSendPopup(): void {

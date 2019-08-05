@@ -3,7 +3,7 @@
   <form  #myForm="ngForm"  (ngSubmit)="submit(myForm)">
     <div></div>
     <figure class="base-style admin-portfolio" *ngFor="let item of info">
-      <input type="hidden" id="{{item.id}}" ngModel>
+      <input type="hidden" name="id" id="{{item.id}}" ngModel>
       <div>
         <p>отображение</p>
         <input type="checkbox" name="show" ngModel>

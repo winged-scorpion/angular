@@ -10,12 +10,16 @@ export class EditingQuestionsComponent implements OnInit {
 
   constructor(private eqJson: QuestionJson) {
   }
+
   const;
   questionList: any;
-
+  answer;
 
 
   ngOnInit() {
+    this.answer = this.eqJson.answer;
+    console.log(this.answer);
+
     this.eqJson.get().subscribe(value => {
         this.questionList = value;
         console.log(this.questionList);

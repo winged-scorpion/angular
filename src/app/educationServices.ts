@@ -8,6 +8,14 @@ export class QuestionJson {
 
   constructor(private http: HttpClient) {
   }
+  const;
+  answer;
+  public sendAnswer(item){
+    this.answer = item;
+  }
+
+
+
 
   public get(): Observable<any> {
     return this.http.get('/assets/question.json');
