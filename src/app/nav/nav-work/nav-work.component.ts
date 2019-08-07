@@ -14,6 +14,7 @@ import {OpenNav} from '../openNav';
 export class NavWorkComponent {
   visible: boolean = true;
   current: boolean;
+
   constructor(private popupShow: PopupShow, public navVisibleMobile: OpenNav) {
   }
 

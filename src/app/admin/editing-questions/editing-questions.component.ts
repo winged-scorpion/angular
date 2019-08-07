@@ -20,9 +20,9 @@ export class EditingQuestionsComponent implements OnInit {
     this.answer = this.eqJson.answer;
     console.log(this.answer);
 
+
     this.eqJson.get().subscribe(value => {
         this.questionList = value;
-        console.log(this.questionList);
       },
       error => {
         console.log('error');

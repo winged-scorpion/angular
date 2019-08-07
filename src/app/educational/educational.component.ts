@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {QuestionJson} from '../educationServices';
-import {NgForm} from '@angular/forms';
+import {NgForm, FormControl, FormGroup, Validators, FormArray  } from '@angular/forms';
 
 @Component({
   selector: 'app-educational',
@@ -13,12 +13,13 @@ export class EducationalComponent implements OnInit {
   questionJson: any;
   inputJson: any = [];
   match: any;
-  question: number = 0;
+  question: 0;
   arrLink: any;
-  name: string = 'question';
-
+  name: 'question';
+  testForm: FormGroup;
   constructor(private eqJson: QuestionJson) {
   }
+
 
 
 
@@ -30,19 +31,19 @@ export class EducationalComponent implements OnInit {
     for (let i = 0; i < arr.length; i++) {
       if (arr[i].active == true) {
         if (arr[i].type !== 'checkbox') {
-          this.arrLink = arr[i]
+          this.arrLink = arr[i];
         } else {
-          this.arrLink = arr[i].questionList
+          this.arrLink = arr[i].questionList;
         }
-        if (this.arrLink.name == undefined || this.arrLink.name.length == 0) {
+        if (this.arrLink.name === undefined || this.arrLink.name.length == 0) {
           if (this.arrLink.length > 1) {
             for (let item = 0; item < 2; item++) {
               this.question++;
-              this.arrLink[item].name = name+ this.question;
+              this.arrLink[item].name = name + this.question;
             }
           } else {
             this.question++;
-            this.arrLink.name = name+ this.question;
+            this.arrLink.name = name + this.question;
           }
         }
         this.inputJson.push(arr[i]);
@@ -51,14 +52,28 @@ export class EducationalComponent implements OnInit {
     }
   }
 
+
+
   ngOnInit() {
     this.eqJson.get().subscribe((response) => {
         this.questionJson = response;
         console.log(this.questionJson);
-        this.sort(this.questionJson)
+        this.sort(this.questionJson);
       },
       error => {
         console.log('error');
       });
+    this.testForm = new FormGroup({
+      'hobbies': new FormArray([])
+    });
+
+
+  }
+  onAddHobbie() {
+    const control = new FormControl(null, Validators.required);
+    (<FormArray>this.testForm.get("hobbies")).push(control);
+  }
+  testSubmit() {
+    console.log(this.testForm);
   }
 }
