@@ -9,10 +9,10 @@ export class Slider {
     let intervalID: any;
     let xSpage: number;
     let page: number;
-    let slideStart: number = 0;
+    let slideStart = 0;
     let slidePrev: number;
     let pageList;
-    let slideClass: string = ' .xS-page';
+    const slideClass = ' .xS-page';
     let status: boolean = true;
     // иннициализация и настройка отображения---------------------------------------------------------------------------
     self.initSlider = function (itemParams) {
@@ -47,23 +47,26 @@ export class Slider {
       wrap = $(id);
       container = $(id + ' .xS-pageContainer');
       interval = this.settings.interval;
-      slideSize = container.find(slideClass).size();
-      if (this.settings.page)
+      slideSize = container.find(slideClass).length;
+      if (this.settings.page) {
         self.pageStep(this.settings);
-      if (this.settings.slideButton)
+      }
+
+      if (this.settings.slideButton) {
         self.slideButtonAdd();
-      if (this.settings.autoPlay)
+      }
+      if (this.settings.autoPlay) {
         self.autoPlayEvent(this.settings);
+      }
       self.slideWidth(this.settings.slideSize);
       self.pageAdd();
     };
     // добавление кнопок------------------------------------------------------------------------------------------------
-    self.slideButtonAdd = function () {
-
+    self.slideButtonAdd = () => {
       $(id + ' .xS-button').prepend('<button class="xS-buttonNext"></button><button class="xS-buttonPrev"></button>');
     };
     // добавление пагинаций---------------------------------------------------------------------------------------------
-    self.pageAdd = function () {
+    self.pageAdd = () => {
       for (let i = 0; i < slideSize; i++) {
         $(id + slideClass).eq(i).attr('data-num', i);
       }
@@ -92,12 +95,12 @@ export class Slider {
       }
     };
     // изменение ширины слайдов-----------------------------------------------------------------------------------------
-    self.slideWidth = function (s) {
+    self.slideWidth = (s) => {
       xSpage = wrap.width() / s;
       $(id + slideClass).css('width', xSpage);
     };
     // авто прокрутка---------------------------------------------------------------------------------------------------
-    self.autoPlayEvent = function (settings) {
+    self.autoPlayEvent = (settings) => {
       intervalID = setInterval(function () {
         self.slideNext(settings);
       }, settings.interval);
@@ -106,7 +109,7 @@ export class Slider {
           clearInterval(intervalID);
         },
         function () {
-          intervalID = setInterval(function (settings) {
+          intervalID = setInterval(function () {
             self.slideNext(settings);
           }, settings.interval);
         }
@@ -127,7 +130,9 @@ export class Slider {
     };
     // шаг в перёд------------------------------------------------------------------------------------------------------
     self.slideNext = function () {
-      if (status !== true) return false;
+      if (status !== true) {
+        return false;
+      }
       switch (this.settings.type) {
         case 'rotate' :
           rotate(this.settings);
@@ -141,6 +146,7 @@ export class Slider {
         default:
           rotate(this.settings);
       }
+
       function rotate(settings) {
         $(slideClass).removeClass('active');
         setTimeout(function () {
@@ -163,8 +169,10 @@ export class Slider {
         if (slideStart >= slideSize) {
           slideStart = 0;
         }
-        if (settings.page)
+        if (settings.page) {
           pageList.addClass('xS-button-active').not('.xS-p li' + '[data-num="' + slideStart + '"]').removeClass('xS-button-active');
+        }
+
         container.find(slideClass).removeClass('active').removeClass('prevActive').css('right', '100%').css('left', 'auto');
         container.find(slideClass + '[data-num="' + slidePrev + '"]').addClass('prevActive').css('right', '0');
         container.find(slideClass + '[data-num="' + slideStart + '"]').addClass('active').css('right', '100%').animate({right: 0}, settings.slideSpeed);
@@ -180,15 +188,19 @@ export class Slider {
         container.find(slideClass).removeClass('active').removeClass('prevActive');
         container.find(slideClass + '[data-num="' + slidePrev + '"]').addClass('prevActive');
         container.find(slideClass + '[data-num="' + slideStart + '"]').addClass('active');
-        if (settings.page)
+        if (settings.page) {
           pageList.addClass('xS-button-active').not('.xS-p li' + '[data-num="' + slideStart + '"]').removeClass('xS-button-active');
+        }
+
       }
 
       self.disableButton(this.settings);
     };
     // шаг назад--------------------------------------------------------------------------------------------------------
     self.slidePrev = function () {
-      if (status !== true) return false;
+      if (status !== true) {
+        return false;
+      }
       switch (this.settings.type) {
         case 'rotate' :
           rotate(this.settings);
@@ -210,8 +222,9 @@ export class Slider {
           left: 0
         }, settings.slideSpeed, function () {
           this.data = $(id + slideClass + ':first').data('num');
-          if (settings.page)
+          if (settings.page) {
             pageList.addClass('xS-button-active').not('.xS-p li' + '[data-num="' + this.data + '"]').removeClass('xS-button-active');
+          }
           slideStart = 0;
         });
       }
@@ -223,8 +236,10 @@ export class Slider {
         if (slideStart < 0) {
           slideStart = slideSize - 1;
         }
-        if (settings.page)
+        if (settings.page) {
           pageList.addClass('xS-button-active').not('.xS-p li' + '[data-num="' + slideStart + '"]').removeClass('xS-button-active');
+        }
+
         container.find(slideClass).removeClass('active').removeClass('prevActive').css('left', '100%').css('right', 'auto');
         container.find(slideClass + '[data-num="' + slidePrev + '"]').addClass('prevActive').css('left', '0');
         container.find(slideClass + '[data-num="' + slideStart + '"]').addClass('active').css('left', '100%').animate({left: 0}, settings.slideSpeed);
@@ -240,14 +255,15 @@ export class Slider {
         container.find(slideClass).removeClass('active').removeClass('prevActive');
         container.find(slideClass + '[data-num="' + slidePrev + '"]').addClass('prevActive');
         container.find(slideClass + '[data-num="' + slideStart + '"]').addClass('active');
-        if (settings.page)
+        if (settings.page) {
           pageList.addClass('xS-button-active').not('.xS-p li' + '[data-num="' + slideStart + '"]').removeClass('xS-button-active');
+        }
       }
 
       self.disableButton(this.settings);
     };
     // переключение табами----------------------------------------------------------------------------------------------
-    self.pageStep = function (settings) {
+    self.pageStep = (settings) => {
       $(id + ' .xS-button').prepend('<ul class="xS-p"></ul>');
       for (let i = 0; i < slideSize; i++) {
         $(id + ' .xS-button ul').append('<li' + ' data-num=' + i + '><button></button></li>');
@@ -256,14 +272,18 @@ export class Slider {
 
       $(id + ' .xS-p li ').on('click', function () {
 
-        if (status !== true) return false;
-        if ($(this).hasClass('xS-button-active'))
+        if (status !== true) {
           return false;
+        }
+        if ($(this).hasClass('xS-button-active')) {
+          return false;
+        }
+
         pageList.addClass('xS-button-active').not(this).removeClass('xS-button-active');
-        let data = $(this).data('num');
+        const data = $(this).data('num') * 1;
         slideStart = data;
-        let prevData = wrap.find(slideClass + '[data-num="' + data + '"]').prevAll(slideClass).length;
-        let pageLeft = prevData * xSpage;
+        const prevData = wrap.find(slideClass + '[data-num="' + data + '"]').prevAll(slideClass).length;
+        const pageLeft = prevData * xSpage;
         switch (settings.type) {
           case 'rotate' :
             rotatePage();
@@ -282,7 +302,7 @@ export class Slider {
           container.find(slideClass).removeClass('prevActive');
           $('.active').addClass('prevActive').removeClass('active');
           setTimeout(function () {
-            container.find(slideClass + '[data-num="' + data + '"]').addClass('active').css('left', '100%').animate({left: 0}, settings.slideSpeed, function () {
+            container.find(slideClass + '[data-num="' + data + '"]').addClass('active').css('left', '100%').animate({left: 0}, settings.slideSpeed, = () => {
               container.find(slideClass).css('left', '100%').css('right', 'auto');
               container.find(slideClass + '[data-num="' + data + '"]').css('left', '0').css('right', 'auto');
               status = true;
@@ -312,7 +332,7 @@ export class Slider {
       });
     };
     // блакировка событий если анимация в движений----------------------------------------------------------------------
-    self.disableButton = function (settings) {
+    self.disableButton = (settings) => {
       status = false;
       setTimeout(function () {
         status = true;

@@ -14,7 +14,7 @@ export class EducationalComponent implements OnInit {
   questionJson: any;
   inputJson: any = [];
   match: any;
-  question: 0;
+  question:  0;
   arrLink: any;
   name: 'question';
 
