@@ -101,7 +101,7 @@ export class Slider {
     };
     // авто прокрутка---------------------------------------------------------------------------------------------------
     self.autoPlayEvent = (settings) => {
-      intervalID = setInterval(function () {
+      intervalID = setInterval(= () => {
         self.slideNext(settings);
       }, settings.interval);
       wrap.hover(
@@ -109,7 +109,7 @@ export class Slider {
           clearInterval(intervalID);
         },
         function () {
-          intervalID = setInterval(function () {
+          intervalID = setInterval(= () => {
             self.slideNext(settings);
           }, settings.interval);
         }
@@ -154,9 +154,11 @@ export class Slider {
             left: -xSpage
           }, settings.slideSpeed, function () {
             container.css('left', '0').find(slideClass + ':first').addClass('active').appendTo(container);
-            page = $(id + slideClass + ':first').data('num');
-            if (settings.page)
+            page = $(id + slideClass + ':first').data('num') * 1;
+            if (settings.page){
               pageList.addClass('xS-button-active').not('.xS-p li' + '[data-num="' + page + '"]').removeClass('xS-button-active');
+            }
+
           });
         }, 0);
       }
@@ -197,7 +199,8 @@ export class Slider {
       self.disableButton(this.settings);
     };
     // шаг назад--------------------------------------------------------------------------------------------------------
-    self.slidePrev = function () {
+    self.slidePrev = () => {
+      console.log(event);
       if (status !== true) {
         return false;
       }
@@ -301,7 +304,7 @@ export class Slider {
         function blockPage() {
           container.find(slideClass).removeClass('prevActive');
           $('.active').addClass('prevActive').removeClass('active');
-          setTimeout(function () {
+          setTimeout(= () => {
             container.find(slideClass + '[data-num="' + data + '"]').addClass('active').css('left', '100%').animate({left: 0}, settings.slideSpeed, = () => {
               container.find(slideClass).css('left', '100%').css('right', 'auto');
               container.find(slideClass + '[data-num="' + data + '"]').css('left', '0').css('right', 'auto');
@@ -313,7 +316,7 @@ export class Slider {
         function rotatePage() {
           container.css('left', '0').stop().animate({
             left: -pageLeft
-          }, settings.slideSpeed, function () {
+          }, settings.slideSpeed, = () => {
             container.css('left', '0');
             wrap.find(slideClass).not($(slideClass + '[data-num="' + data + '"]').nextAll(slideClass)).not(slideClass + '[data-num="' + data + '"]').appendTo(container);
             status = true;
@@ -334,22 +337,22 @@ export class Slider {
     // блакировка событий если анимация в движений----------------------------------------------------------------------
     self.disableButton = (settings) => {
       status = false;
-      setTimeout(function () {
+      setTimeout(= () => {
         status = true;
         return status;
       }, settings.slideSpeed);
       return status;
     };
     // resize-----------------------------------------------------------------------------------------------------------
-    $(window).resize(function () {
+    $(window).resize(= () => {
       self.slideResize();
     });
     // движение вперёд--------------------------------------------------------------------------------------------------
-    $('body').on('click', '.xS-buttonNext', function () {
+    $('body').on('click', '.xS-buttonNext', = () => {
       self.slideNext();
     });
     // движение назад---------------------------------------------------------------------------------------------------
-    $('body').on('click', '.xS-buttonPrev', function () {
+    $('body').on('click', '.xS-buttonPrev', = () => {
       self.slidePrev();
     });
   };
