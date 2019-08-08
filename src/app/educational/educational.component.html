@@ -38,22 +38,5 @@
       </article>
       <input type="submit" value="отправить" [disabled]="myForm.invalid">
     </form>
-    <div formArrayName="hobbies">
-      <h4>your hobbies</h4>
-      <button
-        class="btn btn-default"
-        type="button"
-        (click)="onAddHobbie()">
-        add hobbie
-      </button>
-      <div
-        class="form-group"
-        *ngFor="let hobbyControl of testForm.get('hobbies').controls; let i = index;">
-        <input
-          type="text"
-          class="form-control"
-          [formControlName]="i">
-      </div>
-    </div>
   </div>
 </section>

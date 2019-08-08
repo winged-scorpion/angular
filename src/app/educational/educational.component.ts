@@ -10,13 +10,14 @@ import {NgForm, FormControl, FormGroup, Validators, FormArray  } from '@angular/
 export class EducationalComponent implements OnInit {
 
   const;
+  testForm: FormGroup;
   questionJson: any;
   inputJson: any = [];
   match: any;
   question: 0;
   arrLink: any;
   name: 'question';
-  testForm: FormGroup;
+
   constructor(private eqJson: QuestionJson) {
   }
 
@@ -29,24 +30,27 @@ export class EducationalComponent implements OnInit {
 
   sort(arr) {
     for (let i = 0; i < arr.length; i++) {
-      if (arr[i].active == true) {
+      if (arr[i].active === true) {
         if (arr[i].type !== 'checkbox') {
           this.arrLink = arr[i];
         } else {
           this.arrLink = arr[i].questionList;
         }
-        if (this.arrLink.name === undefined || this.arrLink.name.length == 0) {
+        if (this.arrLink.name === undefined || this.arrLink.name.length === 0) {
           if (this.arrLink.length > 1) {
             for (let item = 0; item < 2; item++) {
               this.question++;
+
               this.arrLink[item].name = name + this.question;
+
             }
           } else {
             this.question++;
-            this.arrLink.name = name + this.question;
+            this.arrLink.name =  name + this.question;
           }
         }
         this.inputJson.push(arr[i]);
+
 
       }
     }
@@ -55,9 +59,9 @@ export class EducationalComponent implements OnInit {
 
 
   ngOnInit() {
+    console.log( name);
     this.eqJson.get().subscribe((response) => {
         this.questionJson = response;
-        console.log(this.questionJson);
         this.sort(this.questionJson);
       },
       error => {
