@@ -20,7 +20,7 @@ export class SliderComponent implements OnInit {
         page: true,
         slideButton: true,
         autoPlay: false,
-        interval: 1000,
+        slideSpeed: 1000,
         slideSize : 1
     });
   }

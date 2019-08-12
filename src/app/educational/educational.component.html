@@ -2,7 +2,8 @@
   <div class="tools-content">
     <h1>Тестирование</h1>
     <form #myForm="ngForm" novalidate (ngSubmit)="submit(myForm)">
-
+      <strong *ngIf="status">успешно отправлено</strong>
+      <input type="text" name="name" ngModel required>
       <article *ngFor="let item of inputJson">
         <div class="content">
           <div>
@@ -17,7 +18,7 @@
             </div>
             <div *ngSwitchCase="'checkbox'">
               <label class="questionInput" *ngFor="let questionItemText of item.questionList">
-                <input name="{{questionItemText.name}}" value="{{questionItemText.item}}" type="checkbox"  ngModel >
+                <input name="{{questionItemText.name}}" value="{{questionItemText.item}}" type="checkbox"  ngModel required>
                 <span>{{questionItemText.item}}</span>
               </label>
             </div>

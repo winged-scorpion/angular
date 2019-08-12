@@ -19,8 +19,6 @@ export class EditingQuestionsComponent implements OnInit {
   ngOnInit() {
     this.answer = this.eqJson.answer;
     console.log(this.answer);
-
-
     this.eqJson.get().subscribe(value => {
         this.questionList = value;
       },

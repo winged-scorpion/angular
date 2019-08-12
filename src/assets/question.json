@@ -2,54 +2,58 @@
   {
     "active": true,
     "type": "radio",
-    "question": "вопрос1",
-    "name": "",
+    "question": "выберете пункт",
+    "name": "radio",
     "questionList": [
       {
-        "item": "сделай то"
+        "item": "первый"
       },
       {
-        "item": "сделай это"
+        "item": "второй"
       },
       {
-        "item": "сделай всё"
+        "item": "третий"
       }
     ]
   },
   {
-    "active": true,
+    "active": false,
     "type": "checkbox",
-    "question": "вопрос2",
+    "question": "клините все ",
     "questionList": [
       {
-        "item": "сделай то",
-        "name": ""
+        "item": "один",
+        "name": "checkbox1"
       },
       {
-        "item": "сделай это",
-        "name": ""
+        "item": "два",
+        "name": "checkbox2"
+      },
+      {
+        "item": "три",
+        "name": "checkbox3"
       }
     ]
   },
   {
     "active": true,
     "type": "text",
-    "question": "вопрос3",
-    "name": "",
+    "question": "напиши мне ",
+    "name": "text",
     "questionList": [
       {
-        "item": "сделай то"
+        "item": "тут пиши"
       }
     ]
   },
   {
-    "active": true,
+    "active": false,
     "type": "textarea",
-    "question": "вопрос0",
-    "name": "",
+    "question": "ещё раз пиши",
+    "name": "textarea",
     "questionList": [
       {
-        "item": "сделай то"
+        "item": "ещё раз тут пиши"
       }
     ]
   }

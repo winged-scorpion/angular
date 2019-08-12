@@ -1,6 +1,6 @@
 export class Slider {
   slider = new function () {
-    let self = this;
+    const self = this;
     let id: string;
     let wrap;
     let container: any;
@@ -13,7 +13,7 @@ export class Slider {
     let slidePrev: number;
     let pageList;
     const slideClass = ' .xS-page';
-    let status: boolean = true;
+    let status = true;
     // иннициализация и настройка отображения---------------------------------------------------------------------------
     self.initSlider = function (itemParams) {
       this.settings = $.extend({
@@ -63,12 +63,15 @@ export class Slider {
     };
     // добавление кнопок------------------------------------------------------------------------------------------------
     self.slideButtonAdd = () => {
-      $(id + ' .xS-button').prepend('<button class="xS-buttonNext"></button><button class="xS-buttonPrev"></button>');
+      $(id + ' .xS-button')
+        .prepend('<button class="xS-buttonNext"></button><button class="xS-buttonPrev"></button>');
     };
     // добавление пагинаций---------------------------------------------------------------------------------------------
     self.pageAdd = () => {
       for (let i = 0; i < slideSize; i++) {
-        $(id + slideClass).eq(i).attr('data-num', i);
+        $(id + slideClass)
+          .eq(i)
+          .attr('data-num', i);
       }
     };
     // изменение ширины слайдов согластно размерам экрана---------------------------------------------------------------
@@ -101,7 +104,7 @@ export class Slider {
     };
     // авто прокрутка---------------------------------------------------------------------------------------------------
     self.autoPlayEvent = (settings) => {
-      intervalID = setInterval(= () => {
+      intervalID = setInterval(() => {
         self.slideNext(settings);
       }, settings.interval);
       wrap.hover(
@@ -109,7 +112,7 @@ export class Slider {
           clearInterval(intervalID);
         },
         function () {
-          intervalID = setInterval(= () => {
+          intervalID = setInterval(() => {
             self.slideNext(settings);
           }, settings.interval);
         }
@@ -149,14 +152,21 @@ export class Slider {
 
       function rotate(settings) {
         $(slideClass).removeClass('active');
-        setTimeout(function () {
+        setTimeout(() => {
           container.stop().animate({
             left: -xSpage
-          }, settings.slideSpeed, function () {
-            container.css('left', '0').find(slideClass + ':first').addClass('active').appendTo(container);
+          }, settings.slideSpeed, () => {
+            container
+              .css('left', '0')
+              .find(slideClass + ':first')
+              .addClass('active')
+              .appendTo(container);
             page = $(id + slideClass + ':first').data('num') * 1;
-            if (settings.page){
-              pageList.addClass('xS-button-active').not('.xS-p li' + '[data-num="' + page + '"]').removeClass('xS-button-active');
+            if (settings.page) {
+              pageList
+                .addClass('xS-button-active')
+                .not('.xS-p li' + '[data-num="' + page + '"]')
+                .removeClass('xS-button-active');
             }
 
           });
@@ -172,12 +182,26 @@ export class Slider {
           slideStart = 0;
         }
         if (settings.page) {
-          pageList.addClass('xS-button-active').not('.xS-p li' + '[data-num="' + slideStart + '"]').removeClass('xS-button-active');
+          pageList
+            .addClass('xS-button-active')
+            .not('.xS-p li' + '[data-num="' + slideStart + '"]')
+            .removeClass('xS-button-active');
         }
-
-        container.find(slideClass).removeClass('active').removeClass('prevActive').css('right', '100%').css('left', 'auto');
-        container.find(slideClass + '[data-num="' + slidePrev + '"]').addClass('prevActive').css('right', '0');
-        container.find(slideClass + '[data-num="' + slideStart + '"]').addClass('active').css('right', '100%').animate({right: 0}, settings.slideSpeed);
+        container
+          .find(slideClass)
+          .removeClass('active')
+          .removeClass('prevActive')
+          .css('right', '100%')
+          .css('left', 'auto');
+        container
+          .find(slideClass + '[data-num="' + slidePrev + '"]')
+          .addClass('prevActive')
+          .css('right', '0');
+        container
+          .find(slideClass + '[data-num="' + slideStart + '"]')
+          .addClass('active')
+          .css('right', '100%')
+          .animate({right: 0}, settings.slideSpeed);
       }
 
       function customAnimate(settings) {
@@ -187,11 +211,21 @@ export class Slider {
         if (slideStart >= slideSize) {
           slideStart = 0;
         }
-        container.find(slideClass).removeClass('active').removeClass('prevActive');
-        container.find(slideClass + '[data-num="' + slidePrev + '"]').addClass('prevActive');
-        container.find(slideClass + '[data-num="' + slideStart + '"]').addClass('active');
+        container
+          .find(slideClass)
+          .removeClass('active')
+          .removeClass('prevActive');
+        container
+          .find(slideClass + '[data-num="' + slidePrev + '"]')
+          .addClass('prevActive');
+        container
+          .find(slideClass + '[data-num="' + slideStart + '"]')
+          .addClass('active');
         if (settings.page) {
-          pageList.addClass('xS-button-active').not('.xS-p li' + '[data-num="' + slideStart + '"]').removeClass('xS-button-active');
+          pageList
+            .addClass('xS-button-active')
+            .not('.xS-p li' + '[data-num="' + slideStart + '"]')
+            .removeClass('xS-button-active');
         }
 
       }
@@ -199,8 +233,7 @@ export class Slider {
       self.disableButton(this.settings);
     };
     // шаг назад--------------------------------------------------------------------------------------------------------
-    self.slidePrev = () => {
-      console.log(event);
+    self.slidePrev = function () {
       if (status !== true) {
         return false;
       }
@@ -219,140 +252,195 @@ export class Slider {
       }
 
       function rotate(settings) {
-        container.find(slideClass).removeClass('active');
-        container.css('left', -xSpage + 'px').find(slideClass + ':last').addClass('active').prependTo(container);
-        container.stop().animate({
-          left: 0
-        }, settings.slideSpeed, function () {
-          this.data = $(id + slideClass + ':first').data('num');
-          if (settings.page) {
-            pageList.addClass('xS-button-active').not('.xS-p li' + '[data-num="' + this.data + '"]').removeClass('xS-button-active');
-          }
-          slideStart = 0;
-        });
+        container.find(slideClass)
+          .removeClass('active');
+        container.css('left', -xSpage + 'px')
+          .find(slideClass + ':last')
+          .addClass('active')
+          .prependTo(container);
+        container.stop()
+          .animate({
+            left: 0
+          }, settings.slideSpeed, function () {
+            this.data = $(id + slideClass + ':first')
+              .data('num');
+            if (settings.page) {
+              pageList
+                .addClass('xS-button-active')
+                .not('.xS-p li' + '[data-num="' + this.data + '"]')
+                .removeClass('xS-button-active');
+            }
+            slideStart = 0;
+          });
       }
 
       function block(settings) {
         slideStart--;
-        let slidePrev = slideStart;
-        slidePrev++;
+        let slidePrevB = slideStart;
+        slidePrevB++;
         if (slideStart < 0) {
           slideStart = slideSize - 1;
         }
         if (settings.page) {
-          pageList.addClass('xS-button-active').not('.xS-p li' + '[data-num="' + slideStart + '"]').removeClass('xS-button-active');
+          pageList
+            .addClass('xS-button-active')
+            .not('.xS-p li' + '[data-num="' + slideStart + '"]')
+            .removeClass('xS-button-active');
         }
 
-        container.find(slideClass).removeClass('active').removeClass('prevActive').css('left', '100%').css('right', 'auto');
-        container.find(slideClass + '[data-num="' + slidePrev + '"]').addClass('prevActive').css('left', '0');
-        container.find(slideClass + '[data-num="' + slideStart + '"]').addClass('active').css('left', '100%').animate({left: 0}, settings.slideSpeed);
+        container
+          .find(slideClass)
+          .removeClass('active')
+          .removeClass('prevActive')
+          .css('left', '100%')
+          .css('right', 'auto');
+        container
+          .find(slideClass + '[data-num="' + slidePrevB + '"]')
+          .addClass('prevActive').css('left', '0');
+        container
+          .find(slideClass + '[data-num="' + slideStart + '"]')
+          .addClass('active').css('left', '100%')
+          .animate({left: 0}, settings.slideSpeed);
       }
 
       function customAnimate(settings) {
         slideStart--;
-        let slidePrev = slideStart;
-        slidePrev++;
+        let slidePrevC = slideStart;
+        slidePrevC++;
         if (slideStart < 0) {
           slideStart = slideSize - 1;
         }
-        container.find(slideClass).removeClass('active').removeClass('prevActive');
-        container.find(slideClass + '[data-num="' + slidePrev + '"]').addClass('prevActive');
-        container.find(slideClass + '[data-num="' + slideStart + '"]').addClass('active');
+        container.find(slideClass)
+          .removeClass('active')
+          .removeClass('prevActive');
+        container.find(slideClass + '[data-num="' + slidePrevC + '"]')
+          .addClass('prevActive');
+        container.find(slideClass + '[data-num="' + slideStart + '"]')
+          .addClass('active');
         if (settings.page) {
-          pageList.addClass('xS-button-active').not('.xS-p li' + '[data-num="' + slideStart + '"]').removeClass('xS-button-active');
+          pageList.addClass('xS-button-active')
+            .not('.xS-p li' + '[data-num="' + slideStart + '"]')
+            .removeClass('xS-button-active');
         }
       }
 
       self.disableButton(this.settings);
-    };
+    }
+    ;
     // переключение табами----------------------------------------------------------------------------------------------
     self.pageStep = (settings) => {
-      $(id + ' .xS-button').prepend('<ul class="xS-p"></ul>');
+
+      $(id + ' .xS-button')
+        .prepend('<ul class="xS-p"></ul>');
       for (let i = 0; i < slideSize; i++) {
-        $(id + ' .xS-button ul').append('<li' + ' data-num=' + i + '><button></button></li>');
+        $(id + ' .xS-button ul')
+          .append('<li' + ' data-num=' + i + '><button></button></li>');
       }
       pageList = $(id + ' .xS-p li');
 
-      $(id + ' .xS-p li ').on('click', function () {
+      $(id + ' .xS-p li ')
+        .on('click', function () {
+          const data = $(this).data('num') * 1;
+          if (status !== true) {
+            return false;
+          }
+          if ($(this).hasClass('xS-button-active')) {
+            return false;
+          }
 
-        if (status !== true) {
-          return false;
-        }
-        if ($(this).hasClass('xS-button-active')) {
-          return false;
-        }
+          pageList.addClass('xS-button-active')
+            .not(this)
+            .removeClass('xS-button-active');
 
-        pageList.addClass('xS-button-active').not(this).removeClass('xS-button-active');
-        const data = $(this).data('num') * 1;
-        slideStart = data;
-        const prevData = wrap.find(slideClass + '[data-num="' + data + '"]').prevAll(slideClass).length;
-        const pageLeft = prevData * xSpage;
-        switch (settings.type) {
-          case 'rotate' :
-            rotatePage();
-            break;
-          case 'block':
-            blockPage();
-            break;
-          case 'customAnimate':
-            customAnimate();
-            break;
-          default:
-            rotatePage();
-        }
+          slideStart = data;
+          const prevData = wrap
+            .find(slideClass + '[data-num="' + data + '"]')
+            .prevAll(slideClass).length;
+          const pageLeft = prevData * xSpage;
+          switch (settings.type) {
+            case 'rotate' :
+              rotatePage();
+              break;
+            case 'block':
+              blockPage();
+              break;
+            case 'customAnimate':
+              customAnimate();
+              break;
+            default:
+              rotatePage();
+          }
 
-        function blockPage() {
-          container.find(slideClass).removeClass('prevActive');
-          $('.active').addClass('prevActive').removeClass('active');
-          setTimeout(= () => {
-            container.find(slideClass + '[data-num="' + data + '"]').addClass('active').css('left', '100%').animate({left: 0}, settings.slideSpeed, = () => {
-              container.find(slideClass).css('left', '100%').css('right', 'auto');
-              container.find(slideClass + '[data-num="' + data + '"]').css('left', '0').css('right', 'auto');
+          function blockPage() {
+            container.find(slideClass).removeClass('prevActive');
+            $('.active')
+              .addClass('prevActive')
+              .removeClass('active');
+            setTimeout(() => {
+              container.find(slideClass + '[data-num="' + data + '"]')
+                .addClass('active')
+                .css('left', '100%')
+                .animate({left: 0}, settings
+                  .slideSpeed, () => {
+                  container.find(slideClass)
+                    .css('left', '100%').css('right', 'auto');
+                  container
+                    .find(slideClass + '[data-num="' + data + '"]')
+                    .css('left', '0')
+                    .css('right', 'auto');
+                  status = true;
+                });
+            }, 0);
+          }
+
+          function rotatePage() {
+            container.css('left', '0').stop().animate({
+              left: -pageLeft
+            }, settings.slideSpeed, () => {
+              container.css('left', '0');
+              wrap
+                .find(slideClass)
+                .not($(slideClass + '[data-num="' + data + '"]')
+                  .nextAll(slideClass))
+                .not(slideClass + '[data-num="' + data + '"]')
+                .appendTo(container);
               status = true;
             });
-          }, 0);
-        }
+          }
 
-        function rotatePage() {
-          container.css('left', '0').stop().animate({
-            left: -pageLeft
-          }, settings.slideSpeed, = () => {
-            container.css('left', '0');
-            wrap.find(slideClass).not($(slideClass + '[data-num="' + data + '"]').nextAll(slideClass)).not(slideClass + '[data-num="' + data + '"]').appendTo(container);
-            status = true;
-          });
-        }
+          function customAnimate() {
+            container.find(slideClass)
+              .removeClass('prevActive');
+            $('.active').addClass('prevActive')
+              .removeClass('active');
+            setTimeout(() => {
+              container.find(slideClass + '[data-num="' + data + '"]')
+                .addClass('active');
+            }, 0);
+          }
 
-        function customAnimate() {
-          container.find(slideClass).removeClass('prevActive');
-          $('.active').addClass('prevActive').removeClass('active');
-          setTimeout(function () {
-            container.find(slideClass + '[data-num="' + data + '"]').addClass('active');
-          }, 0);
-        }
-
-        self.disableButton(settings);
-      });
+          self.disableButton(settings);
+        });
     };
     // блакировка событий если анимация в движений----------------------------------------------------------------------
     self.disableButton = (settings) => {
       status = false;
-      setTimeout(= () => {
+      setTimeout(() => {
         status = true;
         return status;
       }, settings.slideSpeed);
       return status;
     };
     // resize-----------------------------------------------------------------------------------------------------------
-    $(window).resize(= () => {
+    $(window).resize(() => {
       self.slideResize();
     });
     // движение вперёд--------------------------------------------------------------------------------------------------
-    $('body').on('click', '.xS-buttonNext', = () => {
+    $('body').on('click', '.xS-buttonNext', () => {
       self.slideNext();
     });
     // движение назад---------------------------------------------------------------------------------------------------
-    $('body').on('click', '.xS-buttonPrev', = () => {
+    $('body').on('click', '.xS-buttonPrev', () => {
       self.slidePrev();
     });
   };

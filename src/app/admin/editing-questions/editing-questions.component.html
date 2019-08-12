@@ -1,3 +1,7 @@
 <div class="">
   <h2>Ответы</h2>
+  <div class="answer" *ngFor="let item of answer">
+    <div>{{item.question}}</div>
+    <div>{{item.answer}}</div>
+  </div>
 </div>
