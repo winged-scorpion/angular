@@ -16,9 +16,35 @@
         <h3>Разработка</h3>
 
       </div>
-
-
-
+      <div class="calculator">
+        <div class="calculator__output">
+          <input type="text" class="js-im" data-num1="" data-num2="" value="{{numOut}}" placeholder="0" disabled>
+        </div>
+        <div class="calculator__flex">
+          <div class="calculator__column3">
+            <div class="calculator__number" (click)="number(1)"><span>1</span></div>
+            <div class="calculator__number" (click)="number(2)"><span>2</span></div>
+            <div class="calculator__number" (click)="number(3)"><span>3</span></div>
+            <div class="calculator__number" (click)="number(4)"><span>4</span></div>
+            <div class="calculator__number" (click)="number(5)"><span>5</span></div>
+            <div class="calculator__number" (click)="number(6)"><span>6</span></div>
+            <div class="calculator__number" (click)="number(7)"><span>7</span></div>
+            <div class="calculator__number" (click)="number(8)"><span>8</span></div>
+            <div class="calculator__number" (click)="number(9)"><span>9</span></div>
+            <div class="calculator__number" (click)="number(0)"><span>0</span></div>
+            <div class="calculator__number" (click)="number('.')"><span>.</span></div>
+            <div class="calculator__number" (click)="numberDelete()"><span>del</span></div>
+            <div class="calculator__number" (click)="numberPlus('+')"><span>+</span></div>
+            <div class="calculator__number" (click)="numberMinus('-')"><span>-</span></div>
+            <div class="calculator__number" (click)="numberEnter()"><span>=</span></div>
+          </div>
+          <div style="display: none">
+            <div class="calculator__sign"><span>+</span></div>
+            <div class="calculator__sign"><span>-</span></div>
+            <div class="calculator__sign"><span>=</span></div>
+          </div>
+        </div>
+      </div>
       <br>
       <!--<form  action="#" method="post" [formGroup]="eventForm" (ngSubmit)="onEvent()">-->
         <!--<label for="in1">-->

@@ -1,3 +1,4 @@
+@import "../base/variable.scss";
 .tools{
   width: 100%;
   max-width: 1096px;
@@ -31,15 +32,6 @@
 }
 
 
-
-
-
-
-
-
-
-
-@import "../base/variable.scss";
 .xS-sliderWrapper{
   margin:0 auto 20px;
   position: relative;
@@ -175,7 +167,44 @@
   }
 }
 
+.calculator{
 
+
+
+  &__flex{
+    display: flex;
+    border-left:  solid 1px #000;
+  }
+  &__output{
+    input{
+      background: #fff;
+      width: 201px;
+      border: solid 1px #000;
+      height: 40px;
+    }
+  }
+  &__column3{
+    column-count: 3;
+    height: 120px;
+    column-gap: 0;
+  }
+  &__number{
+
+    &:hover{
+      background: #fff;
+      cursor: pointer;
+    }
+  }
+  &__number,&__sign{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: solid 1px #000;
+    border-bottom: solid 1px #000;
+  }
+}
 
 
 
