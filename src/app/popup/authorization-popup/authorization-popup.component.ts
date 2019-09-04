@@ -26,6 +26,7 @@ export class AuthorizationPopupComponent {
 
 
   authorizationSend() {
+
     this.authEvent.getTest(this.userLogin, this.password).subscribe((data: User) => {
       this.user = data;
       if (this.user.status) {

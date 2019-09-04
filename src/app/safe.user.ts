@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class SafeUser {
 
-  isLoggedIn: boolean = true; // false проверка проходит в обычном режиме true проверка отменена
+  isLoggedIn: boolean = false; // false проверка проходит в обычном режиме true проверка отменена
   redirectUrl: string;
 
   // данный конструктор

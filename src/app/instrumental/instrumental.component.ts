@@ -14,7 +14,7 @@ declare let require: any;
 })
 
 export class InstrumentalComponent implements OnInit {
-  numOut: string;
+  numOut: number;
   numIn: string;
   plus: number;
   el: any;
@@ -41,7 +41,7 @@ export class InstrumentalComponent implements OnInit {
   }
 
   numberDelete() {
-    this.numOut = '';
+    this.numOut = 0;
     this.num();
   }
 
