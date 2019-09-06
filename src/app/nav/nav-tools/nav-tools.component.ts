@@ -25,7 +25,6 @@ export class NavToolsComponent {
 
   openNav(): void {
     this.navVisibleMobile.changeVisibility();
-
   }
 
   @Output() onChanged = new EventEmitter<string>();
