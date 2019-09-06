@@ -26,7 +26,7 @@ export class NavWorkComponent {
     });
   }
 
-  openNav() {
+  openNav(): void {
     this.navVisibleMobile.changeVisibility();
   }
 
