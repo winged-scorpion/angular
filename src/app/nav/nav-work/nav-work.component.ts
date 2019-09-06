@@ -12,6 +12,7 @@ import {OpenNav} from '../openNav';
 })
 
 export class NavWorkComponent {
+
   visible: boolean = true;
   current: boolean;
 
@@ -31,7 +32,6 @@ export class NavWorkComponent {
   }
 
   @Output() onChanged = new EventEmitter<string>();
-
   changeNavigation(item: string) {
     this.onChanged.emit(item);
   }

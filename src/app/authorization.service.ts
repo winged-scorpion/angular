@@ -12,8 +12,7 @@ export class AuthorizationService implements OnInit {
   }
   getTest(login: string, password: string) {
     const body = {login: login, password: password};
-    return rtrt//this.http.post('https://winged-scorpion.000webhostapp.com/public_html/lpAdmin.php', body, {responseType: 'json'});
-
+    return this.http.post('https://example.com', body, {responseType: 'json'});
   }
 
 

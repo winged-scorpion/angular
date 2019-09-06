@@ -1,0 +1,10 @@
+{
+  "/posts": {
+    "target": "https://cloud.mail.ru/public/RsFJ/2g2NsNcKu",
+    "secure": true,
+    "pathRewrite": {
+      "^/posts": ""
+    },
+    "changeOrigin": true
+  }
+}

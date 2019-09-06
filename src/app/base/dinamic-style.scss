@@ -99,7 +99,8 @@
   box-sizing: border-box;
   width: 100%;
   max-width: 840px;
-  display: table;
+  display: flex;
+  justify-content: space-between;
   background: url($img_url + "/slide/nav-page-bg.png") repeat-x;
   margin: auto;
   height: 42px;
@@ -121,7 +122,7 @@
     background: url($img_url + "/slide/nav-page-bg-right.png") no-repeat;
     width: 24px;
     height: 42px;
-    margin: 0 -24px 0 0;
+    margin: 0 -25px 0 0;
     @media (max-width: $table){display: none;}
   }
   &:before{
