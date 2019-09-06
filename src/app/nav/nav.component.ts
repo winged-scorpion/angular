@@ -10,15 +10,15 @@ import {Component, OnInit} from '@angular/core';
 
 export class NavComponent implements OnInit {
 
-  page: string = 'work';
-
-  onChanged(item: string) {
+  page: 'work';
+  status: 'none';
+  onChanged(item) {
     this.page = item;
   }
 
-  status: string = 'none';
 
-  statusNav(item: string) {
+
+  statusNav(item) {
     this.status = item;
   }
 
