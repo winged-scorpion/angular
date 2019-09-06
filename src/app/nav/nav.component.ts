@@ -16,8 +16,6 @@ export class NavComponent implements OnInit {
     this.page = item;
   }
 
-
-
   statusNav(item) {
     this.status = item;
   }

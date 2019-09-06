@@ -8,7 +8,7 @@ export class OpenNav {
   changeVisibility(): void {
 
     if (this.width <= 768) {
-      if (this.visibleNav == 'none') {
+      if (this.visibleNav === 'none') {
         this.visibleNav = 'show';
       } else {
         this.visibleNav = 'none';
