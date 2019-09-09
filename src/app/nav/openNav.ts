@@ -4,7 +4,6 @@ import {Injectable} from '@angular/core';
 export class OpenNav {
   visibleNav = 'none';
   width: number = window.innerWidth;
-
   changeVisibility(): void {
     if (this.width <= 768) {
       if (this.visibleNav === 'none') {

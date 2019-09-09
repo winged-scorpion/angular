@@ -16,7 +16,7 @@ export class EducationalComponent implements OnInit {
   name: 'question';
   test = ['fff', 'ddd'];
   questionAnswer;
-  status:boolean = false;
+  status = false;
 
   constructor(private eqJson: QuestionJson) {
   }
@@ -25,7 +25,7 @@ export class EducationalComponent implements OnInit {
   submit(form: NgForm) {
     let question = 0;
     this.questionAnswer = [];
-    for (let i in form.value) {
+    for (const i of form.value) {
       this.questionAnswer.push({question: this.inputJson[question].question, answer: form.value[i]});
       if (question >= this.inputJson.length) {
         question++;
@@ -36,6 +36,7 @@ export class EducationalComponent implements OnInit {
 
 
   }
+
   ngOnInit() {
     this.eqJson.get().subscribe((response) => {
         this.inputJson = response.filter(function (i) {

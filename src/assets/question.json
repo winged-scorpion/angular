@@ -17,7 +17,7 @@
     ]
   },
   {
-    "active": false,
+    "active": true,
     "type": "checkbox",
     "question": "клините все ",
     "questionList": [

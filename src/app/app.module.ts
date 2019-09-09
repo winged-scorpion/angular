@@ -43,7 +43,7 @@ import {ObservableTestComponent} from './instrumental/observable/observable-test
 import {EducationalComponent} from './educational/educational.component';
 import {EditingQuestionsComponent} from './admin/editing-questions/editing-questions.component';
 import {QuestionJson} from './educationServices';
-import {portfolioServices} from "./portfolioServices";
+import {PortfolioServices} from './portfolioServices';
 
 
 
@@ -93,7 +93,7 @@ import {portfolioServices} from "./portfolioServices";
     HttpClientModule
 
   ],
-  providers: [PopupShow, AuthGuard, SafeUser, OpenNav, SubscribeTest, HttpService, AuthorizationService, SubscribeTest, QuestionJson, portfolioServices],
+  providers: [PopupShow, AuthGuard, SafeUser, OpenNav, SubscribeTest, HttpService, AuthorizationService, SubscribeTest, QuestionJson, PortfolioServices],
   bootstrap: [AppComponent]
 })
 export class AppModule {

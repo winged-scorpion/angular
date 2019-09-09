@@ -4,11 +4,9 @@ import {Observable} from 'rxjs';
 
 
 @Injectable()
-export class portfolioServices {
-
+export class PortfolioServices {
   constructor(private http: HttpClient) {
   }
-
   public get(): Observable<any> {
     return this.http.get('/assets/portfolio.json');
   }

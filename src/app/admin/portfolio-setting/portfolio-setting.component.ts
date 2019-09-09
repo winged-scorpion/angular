@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {portfolioServices} from "../../portfolioServices";
+import {PortfolioServices} from '../../portfolioServices';
 import {NgForm} from '@angular/forms';
 
 @Component({
@@ -9,10 +9,11 @@ import {NgForm} from '@angular/forms';
 })
 
 export class PortfolioSettingComponent implements OnInit {
-  constructor(private porJson: portfolioServices) {
+  constructor(private porJson: PortfolioServices) {
   }
 
   info: any;
+
   submit(form: NgForm) {
     console.log(form.value);
   }
@@ -21,7 +22,7 @@ export class PortfolioSettingComponent implements OnInit {
   ngOnInit() {
     this.porJson.get().subscribe(value => {
         this.info = value;
-        console.log(this.info)
+        console.log(this.info);
       },
       error => {
         console.log('error');

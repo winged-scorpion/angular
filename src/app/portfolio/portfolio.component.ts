@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {portfolioServices} from '../portfolioServices';
+import {Component, OnInit} from '@angular/core';
+import {PortfolioServices} from '../portfolioServices';
 
 
 @Component({
@@ -8,9 +8,9 @@ import {portfolioServices} from '../portfolioServices';
   styleUrls: ['portfolio.component.scss']
 })
 
-export class PortfolioComponent {
+export class PortfolioComponent implements OnInit {
 
-  constructor(private porJson: portfolioServices) {
+  constructor(private porJson: PortfolioServices) {
   }
   const;
   info: any;
@@ -18,7 +18,6 @@ export class PortfolioComponent {
   ngOnInit() {
     this.porJson.get().subscribe(value => {
         this.info = value;
-        console.log(this.info)
       },
       error => {
         console.log('error');
