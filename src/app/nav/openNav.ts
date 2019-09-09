@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 
 @Injectable()
 export class OpenNav {
-  visibleNav: string = 'none';
+  visibleNav = 'none';
   width: number = window.innerWidth;
 
   changeVisibility(): void {
