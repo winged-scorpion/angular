@@ -1,6 +1,5 @@
 import {Injectable, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from "rxjs/Rx";
 
 declare let require: any;
 
@@ -12,7 +11,7 @@ export class AuthorizationService implements OnInit {
   }
   getTest(login: string, password: string) {
     const body = {login: login, password: password};
-    return this.http.post('https://example.com', body, {responseType: 'json'});
+    return this.http.post('/assets/php/lpAdmin.php', body, {responseType: 'json'});
   }
 
 

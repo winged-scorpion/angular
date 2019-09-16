@@ -1,5 +1,5 @@
-<section class="tools">
-  <div class="tools-content">
+<section class="tools flex">
+  <div class="tools-content p50">
     <h1>Тестирование</h1>
     <form #myForm="ngForm" novalidate (ngSubmit)="submit(myForm)">
       <strong *ngIf="status">успешно отправлено</strong>
@@ -39,5 +39,10 @@
       </article>
       <input type="submit" value="отправить" [disabled]="myForm.invalid">
     </form>
+  </div>
+
+  <div class="tools-content p50">
+    <h1>график</h1>
+    <canvas id="canvas" width="400" height="400"></canvas>
   </div>
 </section>
