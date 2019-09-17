@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {QuestionJson} from '../educationServices';
 import {NgForm} from '@angular/forms';
 
+
 @Component({
   selector: 'app-educational',
   templateUrl: './educational.component.html',
@@ -36,17 +37,80 @@ export class EducationalComponent implements OnInit {
   }
 
   canvasGenerator() {
+
+
+    const img = new Image();
+
+// User Variables - customize these to change the image being scrolled, its
+// direction, and the speed.
+
+    img.src = 'https://mdn.mozillademos.org/files/4553/Capitan_Meadows,_Yosemite_National_Park.jpg';
+    const CanvasXSize = 800;
+    const CanvasYSize = 200;
+    const speed = 30;
+    const scale = 1.05;
+    const y = -4.5;
+
+// Main program
+
+    const dx = 0.75;
+    let imgW;
+    let imgH;
+    let x = 0;
+    let clearX;
+    let clearY;
     const canvas: any = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
+    img.onload = function () {
+      imgW = img.width * scale;
+      imgH = img.height * scale;
+      if (imgW > CanvasXSize) {
+        x = CanvasXSize - imgW;
+      }
+      if (imgW > CanvasXSize) {
+        clearX = imgW;
+      } else {
+        clearX = CanvasXSize;
+      }
+      if (imgH > CanvasYSize) {
+        clearY = imgH;
+      } else {
+        clearY = CanvasYSize;
+      }
 
-    ctx.moveTo(75, 40);
-    ctx.bezierCurveTo(75, 37, 70, 25, 50, 25);
-    ctx.bezierCurveTo(20, 25, 20, 62.5, 20, 62.5);
-    ctx.bezierCurveTo(20, 80, 40, 102, 75, 120);
-    ctx.bezierCurveTo(110, 102, 130, 80, 130, 62.5);
-    ctx.bezierCurveTo(130, 62.5, 130, 25, 100, 25);
-    ctx.bezierCurveTo(85, 25, 75, 37, 75, 40);
-    ctx.fill();
+
+
+      return setInterval(draw, speed);
+    };
+
+    function draw() {
+
+      ctx.clearRect(0, 0, clearX, clearY);
+
+      if (imgW <= CanvasXSize) {
+
+        if (x > (CanvasXSize)) {
+          x = 0;
+        }
+
+        if (x > (CanvasXSize - imgW)) {
+          ctx.drawImage(img, x - CanvasXSize + 1, y, imgW, imgH);
+        }
+      }   else {
+
+        if (x > (CanvasXSize)) {
+          x = CanvasXSize - imgW;
+        }
+
+        if (x > (CanvasXSize - imgW)) {
+          ctx.drawImage(img, x - imgW + 1, y, imgW, imgH);
+        }
+      }
+
+      ctx.drawImage(img, x, y, imgW, imgH);
+
+      x += dx;
+    }
 
 
   }
