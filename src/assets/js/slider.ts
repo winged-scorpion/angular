@@ -1,19 +1,21 @@
 export class Slider {
   slider = new function () {
-    const self = this;
-    let id: string;
-    let wrap;
-    let container: any;
-    let interval: number;
-    let slideSize: number;
-    let intervalID: any;
-    let xSpage: number;
-    let page: number;
-    let slideStart = 0;
-    let slidePrev: number;
-    let pageList;
-    const slideClass = ' .xS-page';
-    let status = true;
+    let id: string,
+      wrap,
+      container: any,
+      interval: number,
+      slideSize: number,
+      intervalID: any,
+      xSpage: number,
+      page: number,
+      slideStart = 0,
+      slidePrev: number,
+      pageList,
+      status = true;
+
+    const self = this,
+      slideClass = ' .xS-page';
+
     // иннициализация и настройка отображения---------------------------------------------------------------------------
     self.initSlider = function (itemParams) {
       this.settings = $.extend({
@@ -329,7 +331,6 @@ export class Slider {
     ;
     // переключение табами----------------------------------------------------------------------------------------------
     self.pageStep = (settings) => {
-
       $(id + ' .xS-button')
         .prepend('<ul class="xS-p"></ul>');
       for (let i = 0; i < slideSize; i++) {
