@@ -14,6 +14,7 @@ export class SliderComponent implements OnInit {
   slideTest = new sliderScript.Slider;
 
   ngOnInit() {
+
     this.slideTest.slider.initSlider({
         type : 'block',
         id: '#slide',
@@ -21,7 +22,8 @@ export class SliderComponent implements OnInit {
         slideButton: true,
         autoPlay: false,
         slideSpeed: 1000,
-        slideSize : 1
+        slideSize : 1,
+        interval: 1000
     });
   }
 }

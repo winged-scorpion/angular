@@ -100,7 +100,7 @@
   width: 100%;
   max-width: 840px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   background: url($img_url + "/slide/nav-page-bg.png") repeat-x;
   margin: auto;
   height: 42px;
@@ -118,27 +118,29 @@
   &:after{
     content: '';
     display: block;
-    float: right;
+    position: absolute;
+    right: 0;
+    top: 0;
     background: url($img_url + "/slide/nav-page-bg-right.png") no-repeat;
-    width: 24px;
     height: 42px;
-    margin: 0 -25px 0 0;
+    margin: 0 -24px 0 0;
+    min-width: 24px;
     @media (max-width: $table){display: none;}
   }
   &:before{
     content: '';
     display: block;
-    float: left;
+    position: absolute;
+    left: 0;
+    top: 0;
     background: url($img_url + "/slide/nav-page-bg-left.png") no-repeat;
-    width: 24px;
+    min-width: 24px;
     height: 42px;
     margin: 0 0 0 -24px;
     @media (max-width: $table){display: none;}
   }
   li{
-    display: table-cell;
-    vertical-align: top;
-    text-align: center;
+
     padding: 6px 0 0;
     box-sizing: border-box;
     button{

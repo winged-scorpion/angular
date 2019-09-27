@@ -58,18 +58,13 @@
     .xS-page{
       position: absolute;
       top: 0;
-      right: 100%;
       z-index: 1;
       &:first-of-type{
-        right: 0;
-        left: auto;
+        z-index: 3;
       }
-    }
-    .active{
-      z-index: 3;
-    }
-    .prevActive{
-      z-index: 2;
+      &:nth-child(2){
+        z-index: 2;
+      }
     }
   }
 }
@@ -85,22 +80,22 @@
 }
 
 
-.slide1{
+.slide0{
   a{background: url($img_url + "/slide/slide-foto1.jpg") no-repeat; background-size: cover;}
 }
-.slide2{
+.slide1{
   a{background: url($img_url + "/slide/slide-foto2.jpg") no-repeat; background-size: cover;}
 }
-.slide3{
+.slide2{
   a{background: url($img_url + "/slide/slide-foto3.jpg") no-repeat; background-size: cover;}
 }
-.slide4{
+.slide3{
   a{background: url($img_url + "/slide/slide-foto4.jpg") no-repeat; background-size: cover;}
 }
-.slide5{
+.slide4{
   a{background: url($img_url + "/slide/slide-foto5.jpg") no-repeat; background-size: cover;}
 }
-.slide6{
+.slide5{
   a{background: url($img_url + "/slide/slide-foto6.jpg") no-repeat; background-size: cover;}
 }
 .typeShowHide{

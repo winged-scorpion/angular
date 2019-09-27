@@ -2,24 +2,30 @@ export class Slider {
   slider = new function () {
     let id: string,
       wrap,
+      wrap2,
       container: any,
+      container2: any,
       interval: number,
       slideSize: number,
       intervalID: any,
       xSpage: number,
-      page: number,
       slideStart = 0,
-      slidePrev: number,
       pageList,
-      status = true;
+      status = true,
+      sliderWorkArr,
+      sliderWorkDom,
+      sizeStep = 0,
+      slidePrev = 0;
 
     const self = this,
+      slider = document.getElementsByClassName('xS-slider'),
       slideClass = ' .xS-page';
 
     // иннициализация и настройка отображения---------------------------------------------------------------------------
     self.initSlider = function (itemParams) {
       this.settings = $.extend({
         id: 'slide',
+        id2: 'slide',
         type: 'rotate',
         page: false,
         slideButton: false,
@@ -32,28 +38,32 @@ export class Slider {
         interval: 3000,
         slideSpeed: 1000
       }, itemParams);
-      switch (this.settings.type) {
-        case 'rotate':
-          self.rotateAnimate();
-          break;
-        case 'block':
-          self.blockAnimate();
-          break;
-        case 'customAnimate':
-          self.showHideAnimate();
-          break;
-        default:
-          self.rotateAnimate();
-      }
+
       id = this.settings.id;
       wrap = $(id);
-      container = $(id + ' .xS-pageContainer');
-      interval = this.settings.interval;
-      slideSize = container.find(slideClass).length;
-      if (this.settings.page) {
-        self.pageStep(this.settings);
-      }
+      wrap2 = document.getElementById(this.settings.id2);
+      sliderWorkArr = [document.getElementById(this.settings.id2).querySelector('.xS-slider')];
+      sliderWorkDom = document.getElementById(this.settings.id2).querySelector('.xS-slider');
 
+      container = $(id + ' .xS-pageContainer');
+
+      container2 = [sliderWorkDom.querySelector('.xS-pageContainer')];
+      slideSize = container2[0].childElementCount;
+
+      interval = this.settings.interval;
+      switch (this.settings.type) {
+        case 'rotate':
+          self.rotateAnimate(sliderWorkDom);
+          break;
+        case 'block':
+          self.blockAnimate(sliderWorkDom);
+          break;
+        case 'customAnimate':
+          self.showHideAnimate(sliderWorkDom);
+          break;
+        default:
+          self.rotateAnimate(sliderWorkDom);
+      }
       if (this.settings.slideButton) {
         self.slideButtonAdd();
       }
@@ -61,24 +71,37 @@ export class Slider {
         self.autoPlayEvent(this.settings);
       }
       self.slideWidth(this.settings.slideSize);
-      self.pageAdd();
+      self.pageAdd(this.settings);
     };
     // добавление кнопок------------------------------------------------------------------------------------------------
     self.slideButtonAdd = () => {
-      $(id + ' .xS-button')
-        .prepend('<button class="xS-buttonNext"></button><button class="xS-buttonPrev"></button>');
+      wrap2
+        .querySelector('.xS-button')
+        .insertAdjacentHTML('afterBegin', '<button class="xS-buttonNext"></button><button class="xS-buttonPrev"></button>');
     };
     // добавление пагинаций---------------------------------------------------------------------------------------------
-    self.pageAdd = () => {
+    self.pageAdd = (item) => {
+      if (item.page) {
+        wrap2
+          .querySelector('.xS-button')
+          .insertAdjacentHTML('afterBegin', '<ul class="xS-p"></ul>');
+      }
       for (let i = 0; i < slideSize; i++) {
-        $(id + slideClass)
-          .eq(i)
-          .attr('data-num', i);
+        sliderWorkDom
+          .querySelector('.xS-page.slide' + i).setAttribute('data-num', i);
+        if (item.page) {
+          wrap2
+            .querySelector('.xS-p')
+            .insertAdjacentHTML('beforeend', '<li data-num="' + i + '"><button data-num="' + i + '"></button></li>');
+        }
+        if (i === slideSize) {
+          self.pageStep(item);
+        }
       }
     };
     // изменение ширины слайдов согластно размерам экрана---------------------------------------------------------------
     self.slideResize = function () {
-      this.width = $(window).width();
+      this.width = window.innerWidth;
       if (this.width >= this.settings.desktop[0]) {
         this.slideWidth(this.settings.desktop[1]);
       } else {
@@ -101,8 +124,10 @@ export class Slider {
     };
     // изменение ширины слайдов-----------------------------------------------------------------------------------------
     self.slideWidth = (s) => {
-      xSpage = wrap.width() / s;
-      $(id + slideClass).css('width', xSpage);
+      xSpage = slider[0].clientWidth / s;
+      for (const i of container2[0].getElementsByTagName('div')) {
+        i.style.width = xSpage + 'px';
+      }
     };
     // авто прокрутка---------------------------------------------------------------------------------------------------
     self.autoPlayEvent = (settings) => {
@@ -122,16 +147,15 @@ export class Slider {
     };
     // режим отображения прокрутка--------------------------------------------------------------------------------------
     self.rotateAnimate = function () {
-      $(this.settings.id + ' .xS-slider').addClass('typeRotate');
-
+      sliderWorkDom.classList.add('typeRotate');
     };
     // блочный режим отображения----------------------------------------------------------------------------------------
     self.blockAnimate = function () {
-      $(this.settings.id + ' .xS-slider').addClass('typeBlock');
+      sliderWorkDom.classList.add('typeBlock');
     };
     // появление/исчезновение режим отображения-------------------------------------------------------------------------
     self.showHideAnimate = function () {
-      $(this.settings.id + ' .xS-slider').addClass('typeShowHide');
+      sliderWorkDom.classList.add('typeShowHide');
     };
     // шаг в перёд------------------------------------------------------------------------------------------------------
     self.slideNext = function () {
@@ -140,7 +164,7 @@ export class Slider {
       }
       switch (this.settings.type) {
         case 'rotate' :
-          rotate(this.settings);
+          rotate();
           break;
         case 'block':
           block(this.settings);
@@ -149,62 +173,65 @@ export class Slider {
           customAnimate(this.settings);
           break;
         default:
-          rotate(this.settings);
+          rotate();
       }
 
-      function rotate(settings) {
-        $(slideClass).removeClass('active');
-        setTimeout(() => {
-          container.stop().animate({
-            left: -xSpage
-          }, settings.slideSpeed, () => {
-            container
-              .css('left', '0')
-              .find(slideClass + ':first')
-              .addClass('active')
-              .appendTo(container);
-            page = $(id + slideClass + ':first').data('num') * 1;
-            if (settings.page) {
-              pageList
-                .addClass('xS-button-active')
-                .not('.xS-p li' + '[data-num="' + page + '"]')
-                .removeClass('xS-button-active');
-            }
-
-          });
+      function rotate() {
+        const start = Date.now();
+        const timer = setInterval(function () {
+          const timePassed = Date.now() - start;
+          container2[0].style.left = -timePassed + 'px';
+          if (timePassed >= xSpage) {
+            clearInterval(timer);
+            container2[0].style.left = '';
+            container2[0].appendChild(container2[0].getElementsByTagName('div')[0]);
+            const currentPage = container2[0].getElementsByTagName('div')[0].dataset.num;
+            wrap2.querySelector('.xS-p').getElementsByTagName('li')[slidePrev].classList.remove('xS-button-active');
+            wrap2.querySelector('.xS-p').getElementsByTagName('li')[currentPage].classList.add('xS-button-active');
+            slidePrev = currentPage;
+            return;
+          }
         }, 0);
       }
 
-      function block(settings) {
 
-        slideStart++;
+      function block(settings) {
+        console.log('в лево');
+        sizeStep++;
+        if (sizeStep > 1) {
+          sizeStep = 1;
+        }
+
+
+        let step = xSpage;
+
+        slideStart--;
         slidePrev = slideStart;
-        slidePrev--;
-        if (slideStart >= slideSize) {
-          slideStart = 0;
+        slidePrev++;
+        if (slideStart < 0) {
+          slideStart = slideSize - 1;
         }
+        const start = Date.now();
+        const timer = setInterval(function () {
+          const timePassed = Date.now() - start;
+          container2[0].getElementsByTagName('div')[0].style.left = -timePassed + 'px';
+          if (timePassed >= xSpage) {
+            clearInterval(timer);
+            container2[0].appendChild(container2[0].getElementsByTagName('div')[0]);
+            for (const item of container2[0].getElementsByTagName('div')) {
+              item.style.left = '';
+              item.style.right = '';
+            }
+            return;
+          }
+        }, 0);
         if (settings.page) {
-          pageList
-            .addClass('xS-button-active')
-            .not('.xS-p li' + '[data-num="' + slideStart + '"]')
-            .removeClass('xS-button-active');
+          wrap2.querySelector('.xS-p').getElementsByTagName('li')[slidePrev].classList.remove('xS-button-active');
+          wrap2.querySelector('.xS-p').getElementsByTagName('li')[slideStart].classList.add('xS-button-active');
         }
-        container
-          .find(slideClass)
-          .removeClass('active')
-          .removeClass('prevActive')
-          .css('right', '100%')
-          .css('left', 'auto');
-        container
-          .find(slideClass + '[data-num="' + slidePrev + '"]')
-          .addClass('prevActive')
-          .css('right', '0');
-        container
-          .find(slideClass + '[data-num="' + slideStart + '"]')
-          .addClass('active')
-          .css('right', '100%')
-          .animate({right: 0}, settings.slideSpeed);
+        console.log(sizeStep);
       }
+
 
       function customAnimate(settings) {
         slideStart++;
@@ -213,23 +240,17 @@ export class Slider {
         if (slideStart >= slideSize) {
           slideStart = 0;
         }
-        container
-          .find(slideClass)
-          .removeClass('active')
-          .removeClass('prevActive');
-        container
-          .find(slideClass + '[data-num="' + slidePrev + '"]')
-          .addClass('prevActive');
-        container
-          .find(slideClass + '[data-num="' + slideStart + '"]')
-          .addClass('active');
-        if (settings.page) {
-          pageList
-            .addClass('xS-button-active')
-            .not('.xS-p li' + '[data-num="' + slideStart + '"]')
-            .removeClass('xS-button-active');
+        const list = container2[0].getElementsByTagName('div');
+        for (const item of list) {
+          item.classList.remove('active');
+          item.classList.remove('prevActive');
         }
-
+        container2[0].getElementsByTagName('div')[slideStart].classList.add('active');
+        container2[0].getElementsByTagName('div')[slidePrev].classList.add('prevActive');
+        if (settings.page) {
+          wrap2.querySelector('.xS-p').getElementsByTagName('li')[slidePrev].classList.remove('xS-button-active');
+          wrap2.querySelector('.xS-p').getElementsByTagName('li')[slideStart].classList.add('xS-button-active');
+        }
       }
 
       self.disableButton(this.settings);
@@ -254,178 +275,206 @@ export class Slider {
       }
 
       function rotate(settings) {
-        container.find(slideClass)
-          .removeClass('active');
-        container.css('left', -xSpage + 'px')
-          .find(slideClass + ':last')
-          .addClass('active')
-          .prependTo(container);
-        container.stop()
-          .animate({
-            left: 0
-          }, settings.slideSpeed, function () {
-            this.data = $(id + slideClass + ':first')
-              .data('num');
+        let step = xSpage;
+        container2[0].style.left = -xSpage + 'px';
+        container2[0].insertBefore(container2[0].getElementsByTagName('div')[5], container2[0].getElementsByTagName('div')[0]);
+        const timer = setInterval(function () {
+          step--;
+          container2[0].style.left = -step + 'px';
+          if (step <= 0) {
+            clearInterval(timer);
             if (settings.page) {
-              pageList
-                .addClass('xS-button-active')
-                .not('.xS-p li' + '[data-num="' + this.data + '"]')
-                .removeClass('xS-button-active');
+              const currentPage = container2[0].getElementsByTagName('div')[0].dataset.num;
+              wrap2.querySelector('.xS-p').getElementsByTagName('li')[slidePrev].classList.remove('xS-button-active');
+              wrap2.querySelector('.xS-p').getElementsByTagName('li')[currentPage].classList.add('xS-button-active');
+              slidePrev = currentPage;
             }
-            slideStart = 0;
-          });
+            return;
+          }
+        }, 0);
       }
+
 
       function block(settings) {
-        slideStart--;
-        let slidePrevB = slideStart;
-        slidePrevB++;
-        if (slideStart < 0) {
-          slideStart = slideSize - 1;
-        }
-        if (settings.page) {
-          pageList
-            .addClass('xS-button-active')
-            .not('.xS-p li' + '[data-num="' + slideStart + '"]')
-            .removeClass('xS-button-active');
+        console.log('в право');
+        sizeStep--;
+        if (sizeStep < -1) {
+          sizeStep = -1;
         }
 
-        container
-          .find(slideClass)
-          .removeClass('active')
-          .removeClass('prevActive')
-          .css('left', '100%')
-          .css('right', 'auto');
-        container
-          .find(slideClass + '[data-num="' + slidePrevB + '"]')
-          .addClass('prevActive').css('left', '0');
-        container
-          .find(slideClass + '[data-num="' + slideStart + '"]')
-          .addClass('active').css('left', '100%')
-          .animate({left: 0}, settings.slideSpeed);
+
+        let step = xSpage;
+        slideStart++;
+        slidePrev = slideStart;
+        slidePrev--;
+        if (slideStart >= slideSize) {
+          slideStart = 0;
+        }
+
+        const start = Date.now();
+        const timer = setInterval(function () {
+          const timePassed = Date.now() - start;
+          console.log(timePassed);
+          if (sizeStep < 0) {
+            step = 0;
+
+            container2[0].getElementsByTagName('div')[0].style.right = -timePassed + 'px';
+            if (timePassed >= xSpage) {
+              clearInterval(timer);
+              container2[0].insertBefore(container2[0].getElementsByTagName('div')[0], container2[0].getElementsByTagName('div')[6]);
+              for (const item of container2[0].getElementsByTagName('div')) {
+                item.style.left = '';
+                item.style.right = '';
+              }
+              return;
+            }
+
+          } else {
+            container2[0].insertBefore(container2[0].getElementsByTagName('div')[5], container2[0].getElementsByTagName('div')[0]);
+            container2[0].getElementsByTagName('div')[0].style.right = -xSpage + 'px';
+            container2[0].getElementsByTagName('div')[0].style.right = step + 'px';
+            if (step <= 0) {
+              clearInterval(timer);
+              for (const item of container2[0].getElementsByTagName('div')) {
+                item.style.left = '';
+                item.style.right = '';
+              }
+              return;
+            }
+          }
+        });
+
+        if (settings.page) {
+          wrap2.querySelector('.xS-p').getElementsByTagName('li')[slidePrev].classList.remove('xS-button-active');
+          wrap2.querySelector('.xS-p').getElementsByTagName('li')[slideStart].classList.add('xS-button-active');
+        }
+
+
       }
+
+      console.log(sizeStep);
+
 
       function customAnimate(settings) {
         slideStart--;
-        let slidePrevC = slideStart;
-        slidePrevC++;
+        slidePrev = slideStart;
+        slidePrev++;
         if (slideStart < 0) {
           slideStart = slideSize - 1;
         }
-        container.find(slideClass)
-          .removeClass('active')
-          .removeClass('prevActive');
-        container.find(slideClass + '[data-num="' + slidePrevC + '"]')
-          .addClass('prevActive');
-        container.find(slideClass + '[data-num="' + slideStart + '"]')
-          .addClass('active');
+        const list = container2[0].getElementsByTagName('div');
+        for (const item of list) {
+          item.classList.remove('active');
+          item.classList.remove('prevActive');
+        }
+        container2[0].getElementsByTagName('div')[slideStart].classList.add('active');
+        container2[0].getElementsByTagName('div')[slidePrev].classList.add('prevActive');
         if (settings.page) {
-          pageList.addClass('xS-button-active')
-            .not('.xS-p li' + '[data-num="' + slideStart + '"]')
-            .removeClass('xS-button-active');
+          console.log(slidePrev);
+          wrap2.querySelector('.xS-p').getElementsByTagName('li')[slidePrev].classList.remove('xS-button-active');
+          wrap2.querySelector('.xS-p').getElementsByTagName('li')[slideStart].classList.add('xS-button-active');
         }
       }
 
       self.disableButton(this.settings);
-    }
-    ;
+    };
     // переключение табами----------------------------------------------------------------------------------------------
     self.pageStep = (settings) => {
-      $(id + ' .xS-button')
-        .prepend('<ul class="xS-p"></ul>');
-      for (let i = 0; i < slideSize; i++) {
-        $(id + ' .xS-button ul')
-          .append('<li' + ' data-num=' + i + '><button></button></li>');
-      }
-      pageList = $(id + ' .xS-p li');
 
-      $(id + ' .xS-p li ')
-        .on('click', function () {
-          const data = $(this).data('num') * 1;
+      pageList = $(id + ' .xS-p li');
+      const tabs: any = wrap2.querySelector('.xS-p');
+      tabs.addEventListener('click', (e) => {
+        if (e.target.localName === 'button') {
+          const dataCurrent = +e.target.dataset.num;
           if (status !== true) {
             return false;
           }
-          if ($(this).hasClass('xS-button-active')) {
+          if (e.path[1].className === 'xS-button-active') {
             return false;
           }
-
-          pageList.addClass('xS-button-active')
-            .not(this)
-            .removeClass('xS-button-active');
-
-          slideStart = data;
-          const prevData = wrap
-            .find(slideClass + '[data-num="' + data + '"]')
-            .prevAll(slideClass).length;
+          tabs.getElementsByTagName('li')[slidePrev].classList.remove('xS-button-active');
+          tabs.getElementsByTagName('li')[e.target.dataset.num].classList.add('xS-button-active');
+          slidePrev = dataCurrent;
+          slideStart = dataCurrent;
+          let prevData;
+          for (let i = 0; i <= container2[0].getElementsByTagName('div').length; i++) {
+            const item = +container2[0].getElementsByTagName('div')[i].dataset.num;
+            if (dataCurrent === item) {
+              prevData = i;
+              break;
+            }
+          }
           const pageLeft = prevData * xSpage;
           switch (settings.type) {
             case 'rotate' :
-              rotatePage();
+              rotatePage(dataCurrent, pageLeft);
               break;
             case 'block':
-              blockPage();
+              blockPage(dataCurrent);
               break;
             case 'customAnimate':
-              customAnimate();
+              customAnimate(dataCurrent);
               break;
             default:
-              rotatePage();
+              rotatePage(dataCurrent, pageLeft);
           }
-
-          function blockPage() {
-            container.find(slideClass).removeClass('prevActive');
-            $('.active')
-              .addClass('prevActive')
-              .removeClass('active');
-            setTimeout(() => {
-              container.find(slideClass + '[data-num="' + data + '"]')
-                .addClass('active')
-                .css('left', '100%')
-                .animate({left: 0}, settings
-                  .slideSpeed, () => {
-                  container.find(slideClass)
-                    .css('left', '100%').css('right', 'auto');
-                  container
-                    .find(slideClass + '[data-num="' + data + '"]')
-                    .css('left', '0')
-                    .css('right', 'auto');
-                  status = true;
-                });
-            }, 0);
-          }
-
-          function rotatePage() {
-            container.css('left', '0').stop().animate({
-              left: -pageLeft
-            }, settings.slideSpeed, () => {
-              container.css('left', '0');
-              wrap
-                .find(slideClass)
-                .not($(slideClass + '[data-num="' + data + '"]')
-                  .nextAll(slideClass))
-                .not(slideClass + '[data-num="' + data + '"]')
-                .appendTo(container);
-              status = true;
-            });
-          }
-
-          function customAnimate() {
-            container.find(slideClass)
-              .removeClass('prevActive');
-            $('.active').addClass('prevActive')
-              .removeClass('active');
-            setTimeout(() => {
-              container.find(slideClass + '[data-num="' + data + '"]')
-                .addClass('active');
-            }, 0);
-          }
-
           self.disableButton(settings);
-        });
+        }
+
+        function blockPage(dataCurrent) {
+          container.find(slideClass).removeClass('prevActive');
+
+          $('.active')
+            .addClass('prevActive')
+            .removeClass('active');
+          setTimeout(() => {
+            container.find(slideClass + '[data-num="' + dataCurrent + '"]')
+              .addClass('active')
+              .css('left', '100%')
+              .animate({left: 0}, settings
+                .slideSpeed, () => {
+                container.find(slideClass)
+                  .css('left', '100%').css('right', 'auto');
+                container
+                  .find(slideClass + '[data-num="' + dataCurrent + '"]')
+                  .css('left', '0')
+                  .css('right', 'auto');
+                status = true;
+              });
+          }, 0);
+        }
+
+        function rotatePage(dataCurrent, pageLeft) {
+          container.css('left', '0').stop().animate({
+            left: -pageLeft
+          }, settings.slideSpeed, () => {
+            container.css('left', '0');
+            wrap
+              .find(slideClass)
+              .not($(slideClass + '[data-num="' + dataCurrent + '"]')
+                .nextAll(slideClass))
+              .not(slideClass + '[data-num="' + dataCurrent + '"]')
+              .appendTo(container);
+            status = true;
+          });
+        }
+
+        function customAnimate(dataCurrent) {
+          container.find(slideClass)
+            .removeClass('prevActive');
+          $('.active').addClass('prevActive')
+            .removeClass('active');
+          setTimeout(() => {
+            container.find(slideClass + '[data-num="' + dataCurrent + '"]')
+              .addClass('active');
+          }, 0);
+        }
+      });
     };
-    // блакировка событий если анимация в движений----------------------------------------------------------------------
+    // блокировка событий если анимация в движений----------------------------------------------------------------------
     self.disableButton = (settings) => {
       status = false;
+
       setTimeout(() => {
         status = true;
         return status;
