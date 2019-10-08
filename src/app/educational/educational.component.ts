@@ -19,9 +19,10 @@ export class EducationalComponent implements OnInit {
   questionAnswer;
   status = false;
   temperature;
-  precipitation;
+  precipitation = [];
   yearOb = [];
   yearBase = [];
+  yearBaseOutput;
 
 
   constructor(private eqJson: QuestionJson) {
@@ -43,6 +44,7 @@ export class EducationalComponent implements OnInit {
   }
 
   formFilter(form: NgForm) {
+    let summa = 0;
     const yearOt = form.value.yearOt;
     const yearDo = form.value.yearDo;
     const yearNew = this.yearOb.filter(function (elem) {
@@ -51,14 +53,23 @@ export class EducationalComponent implements OnInit {
 
 
     for (let i = 0; i < yearNew.length; i++) {
-      const test = this.yearBase.filter(function (elem) {
-        //return +(elem.t).substr(0, 4) === yearNew[i];
-        return elem;
+      this.yearBaseOutput = this.yearBase.filter(function (elem) {
+        return +((elem.t).substr(0, 4)) === +(yearNew[i]);
       });
-      console.log(test);
+
+      for (const item of this.yearBaseOutput) {
+        summa += item.v;
+      }
+
+      this.precipitation.push([this.yearBaseOutput]);
     }
+    console.log(this.yearBaseOutput);
+
   }
 
+  filter() {
+
+  }
 
   ngOnInit() {
 
@@ -67,7 +78,10 @@ export class EducationalComponent implements OnInit {
       let i;
       let year2 = +(value[0].t).substr(0, 4);
       let year: number;
+      let nofor = [];
+      nofor = value;
       let thisYear;
+      console.log(nofor);
 
       let summa = 0;
 
@@ -80,26 +94,28 @@ export class EducationalComponent implements OnInit {
           this.yearOb.push([year]);
         }
       }
+
+      nofor.forEach(function (item, tt) {
+        return item[1];
+      });
+
+
+
       thisYear = value.filter(function (elem) {
         return +(elem.t).substr(0, 4) === 1999;
       });
+      //console.log(thisYear);
       for (i = 0; i < thisYear.length; i++) {
         summa += thisYear[i].v;
       }
-      summa = summa / thisYear.length;
 
+      summa = summa / thisYear.length;
+      //console.log(summa);
       let test = value.filter(function (elem) {
         return +(elem.t).substr(0, 4) === 1999;
       });
-      console.log(test);
-
-
-
-
       // let summa = this.precipitation += test[i].v;
-
       //let summa = this.precipitation += test[i].v;
-
       //console.log(this.yearOb);
       // for (const t of value) {
       //   stop--;
@@ -110,8 +126,9 @@ export class EducationalComponent implements OnInit {
       //     break;
       //   }
       // }
-
     });
+
+
     this.eqJson.temperatureGet().subscribe(value => {
       this.temperature = value;
     });
