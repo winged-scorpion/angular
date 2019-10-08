@@ -43,6 +43,25 @@
 
   <div class="tools-content p50">
     <h1>график</h1>
-    <canvas id="canvas" width="400" height="400"></canvas>
+    <div class="testLeila">
+      <div class="testLeila__nav">
+        <a href="">Температура</a>
+        <a href="">Осадки</a>
+      </div>
+      <div class="testLeila__active">
+        <div class="filter">
+          <form #filForm="ngForm"  (ngSubmit)="formFilter(filForm)">
+            <select name="yearOt" id="yearStart" title="От" [(ngModel)]="yearOt">
+              <option *ngFor="let item of yearOb" [ngValue]="item">{{item}}</option>
+            </select>
+            <select name="yearDo" id="yearEnd" title="От" [(ngModel)]="yearDo">
+              <option *ngFor="let item of yearOb" [ngValue]="item">{{item}}</option>
+            </select>
+            <input type="submit" value="start">
+          </form>
+
+        </div>
+      </div>
+    </div>
   </div>
 </section>

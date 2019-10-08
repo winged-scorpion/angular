@@ -20,4 +20,13 @@ export class QuestionJson {
   public get(): Observable<any> {
     return this.http.get('/assets/question.json');
   }
+
+  public precipitationGet(): Observable<any> {
+    return this.http.get('/assets/leila/precipitation.json');
+  }
+
+  public temperatureGet(): Observable<any> {
+    return this.http.get('/assets/leila/temperature.json');
+  }
+
 }

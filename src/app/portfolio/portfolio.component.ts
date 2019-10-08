@@ -18,6 +18,7 @@ export class PortfolioComponent implements OnInit {
   ngOnInit() {
     this.porJson.get().subscribe(value => {
         this.info = value;
+
       },
       error => {
         console.log('error');
