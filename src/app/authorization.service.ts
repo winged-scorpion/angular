@@ -12,10 +12,6 @@ export class AuthorizationService implements OnInit {
     const body = {login: login, password: password};
     return this.http.post('/assets/php/lpAdmin.php', body, {responseType: 'json'});
   }
-
-
-
-
   ngOnInit() {
   }
 }

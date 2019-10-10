@@ -15,5 +15,6 @@ export class SafeUser {
 
   logout(): void {
     this.isLoggedIn = false;
+    document.cookie = 'login=false';
   }
 }
