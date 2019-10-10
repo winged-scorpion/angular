@@ -6,7 +6,6 @@ declare let require: any;
 @Injectable()
 
 export class AuthorizationService implements OnInit {
-  user: {status: true};
   constructor(private http: HttpClient) {
   }
   getTest(login: string, password: string) {
