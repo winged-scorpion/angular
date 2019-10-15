@@ -1,0 +1,38 @@
+.stackUserList{
+  padding: 30px 0 0;
+  text-align: center;
+  &__stackUser{
+    display: inline-block;
+    vertical-align: top;
+    width: 134px;
+    height: 134px;
+    margin-right: 2.5%;
+    margin-bottom: 2.5%;
+    border: solid 3px #000;
+    position: relative;
+
+    img{
+      max-width: 100%;
+      max-height: 100%;
+      display: inline-block;
+    }
+    &__info{
+      position: absolute;
+      z-index: 2;
+      background: rgba(0, 170, 238, 0.9);
+      display: none;
+      bottom: 95%;
+      left: 95%;
+      color: #fff;
+      width: 200px;
+    }
+    &:nth-child(3n){
+      margin-right: 0;
+    }
+    &:hover{
+      span{
+        display: block;
+      }
+    }
+  }
+}

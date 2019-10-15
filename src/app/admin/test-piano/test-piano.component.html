@@ -1,0 +1,19 @@
+<div>
+  <form  #stackexchangeFilter="ngForm" novalidate (ngSubmit)="filter(stackexchangeFilter)">
+    <label for="purpose">
+      <span>Введите цель</span>
+      <input type="text" name="purpose" id="purpose" ngModel required>
+    </label>
+    <input type="submit" value="искать" [disabled]="stackexchangeFilter.invalid">
+  </form>
+    <div class="stackUserList">
+      <a *ngFor="let user of userArr" href="{{user.link}}" target="blank" class="stackUserList__stackUser">
+        <img src="{{user.profile_image}}">
+        <span class="stackUserList__stackUser__info">
+          {{user.display_name}}
+          <br>
+          {{user.location}}
+        </span>
+      </a>
+    </div>
+</div>

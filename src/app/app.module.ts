@@ -44,6 +44,7 @@ import {EducationalComponent} from './educational/educational.component';
 import {EditingQuestionsComponent} from './admin/editing-questions/editing-questions.component';
 import {QuestionJson} from './educationServices';
 import {PortfolioServices} from './portfolioServices';
+import { TestPianoComponent } from './admin/test-piano/test-piano.component';
 
 
 
@@ -80,7 +81,8 @@ import {PortfolioServices} from './portfolioServices';
     Observable3Component,
     ObservableTestComponent,
     EducationalComponent,
-    EditingQuestionsComponent
+    EditingQuestionsComponent,
+    TestPianoComponent
 
   ],
   imports: [

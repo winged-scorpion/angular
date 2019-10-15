@@ -29,4 +29,8 @@ export class QuestionJson {
     return this.http.get('/assets/leila/temperature.json');
   }
 
+  testP(url) {
+    return this.http.get(url);
+  }
+
 }
